@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-04-2024 a las 00:54:21
+-- Tiempo de generación: 24-04-2024 a las 01:45:22
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -32,41 +32,9 @@ CREATE TABLE `pokemon` (
   `id_pokemon` int(151) NOT NULL,
   `imagen` varchar(255) NOT NULL,
   `nombre` varchar(50) NOT NULL,
-  `descripcion` varchar(255) NOT NULL
+  `id_tipo_pokemon1` int(11) DEFAULT NULL,
+  `id_tipo_pokemon2` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `pokemon`
---
-
-INSERT INTO `pokemon` (`id_bdd`, `id_pokemon`, `imagen`, `nombre`, `descripcion`) VALUES
-(1, 1, 'Pokedex/img/Bulbasaur.png.png', 'Bulbasaur', 'es un Pokémon de tipo planta/veneno introducido en la primera generación. Es uno de los tres Pokémon iniciales que pueden elegir los entrenadores que empiezan su aventura en la región de Kanto, junto a Charmander y Squirtle. Se destaca por ser el primer P'),
-(2, 2, 'Pokedex/img/ivysaur.png', 'Ivysaur', 'Ivysaur es un Pokémon de tipo planta/veneno introducido en la primera generación. Es la evolución de Bulbasaur, uno de los Pokémon iniciales de Kanto.'),
-(3, 3, 'Pokedex/img/Venusaur.png', 'Venusaur', ' es un Pokémon de tipo planta/veneno introducido en la primera generación. Es la evolución de Ivysaur.');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `relacion_pokemon_tipo`
---
-
-CREATE TABLE `relacion_pokemon_tipo` (
-  `id_relacion` int(11) NOT NULL,
-  `id_pokemon` int(11) NOT NULL,
-  `id_tipo` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `relacion_pokemon_tipo`
---
-
-INSERT INTO `relacion_pokemon_tipo` (`id_relacion`, `id_pokemon`, `id_tipo`) VALUES
-(2, 1, 2),
-(3, 1, 8),
-(4, 2, 2),
-(5, 2, 8),
-(6, 3, 2),
-(7, 3, 8);
 
 -- --------------------------------------------------------
 
@@ -110,15 +78,9 @@ INSERT INTO `tipo` (`id_tipo_pokemon`, `descripcion`) VALUES
 --
 ALTER TABLE `pokemon`
   ADD PRIMARY KEY (`id_bdd`),
-  ADD UNIQUE KEY `id_pokemon` (`id_pokemon`);
-
---
--- Indices de la tabla `relacion_pokemon_tipo`
---
-ALTER TABLE `relacion_pokemon_tipo`
-  ADD PRIMARY KEY (`id_relacion`),
-  ADD KEY `fk_id_pokemon` (`id_pokemon`),
-  ADD KEY `fk_id_tipo` (`id_tipo`);
+  ADD UNIQUE KEY `id_pokemon` (`id_pokemon`),
+  ADD KEY `fk_tipo_pokemon1` (`id_tipo_pokemon1`),
+  ADD KEY `fk_tipo_pokemon2` (`id_tipo_pokemon2`);
 
 --
 -- Indices de la tabla `tipo`
@@ -137,12 +99,6 @@ ALTER TABLE `pokemon`
   MODIFY `id_bdd` int(151) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de la tabla `relacion_pokemon_tipo`
---
-ALTER TABLE `relacion_pokemon_tipo`
-  MODIFY `id_relacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
 -- AUTO_INCREMENT de la tabla `tipo`
 --
 ALTER TABLE `tipo`
@@ -153,12 +109,11 @@ ALTER TABLE `tipo`
 --
 
 --
--- Filtros para la tabla `relacion_pokemon_tipo`
+-- Filtros para la tabla `pokemon`
 --
-ALTER TABLE `relacion_pokemon_tipo`
-  ADD CONSTRAINT `fk_id_pokemon` FOREIGN KEY (`id_pokemon`) REFERENCES `pokemon` (`id_bdd`),
-  ADD CONSTRAINT `fk_id_tipo` FOREIGN KEY (`id_tipo`) REFERENCES `tipo` (`id_tipo_pokemon`),
-  ADD CONSTRAINT `relacion_pokemon_tipo_ibfk_1` FOREIGN KEY (`id_pokemon`) REFERENCES `pokemon` (`id_bdd`);
+ALTER TABLE `pokemon`
+  ADD CONSTRAINT `fk_tipo_pokemon1` FOREIGN KEY (`id_tipo_pokemon1`) REFERENCES `tipo` (`id_tipo_pokemon`),
+  ADD CONSTRAINT `fk_tipo_pokemon2` FOREIGN KEY (`id_tipo_pokemon2`) REFERENCES `tipo` (`id_tipo_pokemon`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
