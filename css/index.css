@@ -1,0 +1,151 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/*======HEADER======== */
+header{
+   border-bottom: 1px solid #b45c64;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+nav{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+}
+
+.logo img{
+    width: 50px;
+    height: 50px;
+    margin: 1rem;
+}
+
+.nombrePag h1{
+    font-family: "Pixelify Sans", sans-serif;
+    font-size: 70px;
+    color: red;
+}
+
+.formularioIngreso input{
+    height: 40px;
+    width: 150px;
+    margin: 1rem;
+    border-radius: 5px;
+    border: 2px solid red;
+    background-color: white;
+    font-family: "Poppins", sans-serif;
+
+}
+
+#ingreso{
+    background-color:red;
+    color: white;
+    font-weight: bold;
+}
+
+#ingreso:hover{
+    background-color:white;
+    color: red;
+    transition-duration: 0.5s;
+}
+
+
+/*======MAIN======== */
+
+#buscar{
+    margin: 1rem;
+    height: 40px;
+    width: 80%;
+    border-radius: 5px;
+    border: 2px solid red;
+    background-color: white;
+    font-family: "Poppins", sans-serif;
+    font-size: 18px;
+}
+
+#buscarpokemon{
+    margin: 0.5rem;
+    height: 40px;
+    width: 15%;
+    border-radius: 5px;
+    border: 2px solid red;
+    font-family: "Poppins", sans-serif;
+    background-color:red;
+    color: white;
+    font-weight: bold;
+}
+
+#buscarpokemon:hover {
+    background-color:white;
+    color: red;
+    transition-duration: 0.5s;
+}
+
+/*======FOOTER======== */
+footer{
+    padding-top: 0.2rem;
+    background-color: red;
+}
+
+.acomodarFooter{
+    margin: 1rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.logoynombreFooter{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.logoynombreFooter img{
+    height: 30px;
+    width: 30px;
+}
+
+.logoynombreFooter h2{
+    font-family: "Pixelify Sans", sans-serif;
+    color: white;
+    font-size: 28px;
+}
+
+.alumnos{
+    margin: 1rem;
+
+}
+
+.alumnos ul{
+    list-style: none;
+}
+
+
+.alumnos ul span{
+    font-family: "Pixelify Sans", sans-serif;
+    color: white;
+}
+
+.alumnos ul li{
+    font-family: "Poppins", sans-serif;
+    color: white;
+}
+
+
+.alumnos ul li:hover{
+    background: white;
+    font-family: "Pixelify Sans", sans-serif;
+    color: red;
+    font-size: 16px;
+}
+
+.drev{
+    display: flex;
+    margin-top: 120px;
+    color: white;
+    font-family: "Poppins", sans-serif;
+}
