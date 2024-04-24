@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-04-2024 a las 01:45:22
+-- Tiempo de generación: 24-04-2024 a las 02:04:03
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `pokemon`
+-- Base de datos: `pokemon2`
 --
 
 -- --------------------------------------------------------
@@ -28,12 +28,12 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `pokemon` (
-  `id_bdd` int(151) NOT NULL,
-  `id_pokemon` int(151) NOT NULL,
+  `id_bdd` int(11) NOT NULL,
+  `id_pokemon` int(11) NOT NULL,
   `imagen` varchar(255) NOT NULL,
-  `nombre` varchar(50) NOT NULL,
-  `id_tipo_pokemon1` int(11) DEFAULT NULL,
-  `id_tipo_pokemon2` int(11) DEFAULT NULL
+  `nombre` varchar(255) NOT NULL,
+  `id_tipo_pokemon1` int(16) NOT NULL,
+  `id_tipo_pokemon2` int(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -52,22 +52,22 @@ CREATE TABLE `tipo` (
 --
 
 INSERT INTO `tipo` (`id_tipo_pokemon`, `descripcion`) VALUES
-(2, 'planta'),
-(3, 'fuego'),
-(4, 'agua'),
-(5, 'volador'),
-(6, 'insecto'),
-(7, 'normal'),
-(8, 'veneno'),
-(9, 'electrico'),
-(10, 'tierra'),
-(11, 'lucha'),
-(12, 'psiquico'),
-(13, 'roca'),
-(14, 'fantasma'),
-(15, 'hielo'),
-(16, 'dragon'),
-(17, 'bicho/volador');
+(1, 'planta'),
+(2, 'fuego'),
+(3, 'agua'),
+(4, 'volador'),
+(5, 'insecto'),
+(6, 'normal'),
+(7, 'veneno'),
+(8, 'electrico'),
+(9, 'tierra'),
+(10, 'lucha'),
+(11, 'psiquico'),
+(12, 'roca'),
+(13, 'fantasma'),
+(14, 'hielo'),
+(15, 'dragon'),
+(16, 'bicho/volador');
 
 --
 -- Índices para tablas volcadas
@@ -93,16 +93,10 @@ ALTER TABLE `tipo`
 --
 
 --
--- AUTO_INCREMENT de la tabla `pokemon`
---
-ALTER TABLE `pokemon`
-  MODIFY `id_bdd` int(151) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
 -- AUTO_INCREMENT de la tabla `tipo`
 --
 ALTER TABLE `tipo`
-  MODIFY `id_tipo_pokemon` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_tipo_pokemon` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Restricciones para tablas volcadas
