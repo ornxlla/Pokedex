@@ -1,3 +1,6 @@
+<?php
+include('header.php')
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -13,55 +16,17 @@
     <title>Pokedex</title>
 </head>
 <body>
-    <header>
-                <nav>
-                        <div class="logo">
-                                <img src="img/pokeball.png">
-                        </div>
 
-                        <div class="nombrePag">
-                                <h1>Pokedex</h1>
-                        </div>
-
-                        <div class="formularioIngreso">
-                                <form class="ingreso">
-                                        <input type="text" id="usuario" name="usuario" placeholder="Usuario">
-                                        <input type="password" id="contrasenia" name="contrasenia" placeholder="Contraseña">
-                                        <input type="submit" id="ingreso" name="ingreso" value="Ingresar">
-                                </form>
-                        </div>
-                </nav>
-    </header>
     <main>
-                <form action="/buscar" method="GET">
+                <form action="php/busqueda.php" method="GET">
                         <input type="text" name="q" id="buscar" placeholder="Ingrese el nombre, tipo o número de pokemon">
                         <input type="submit" id="buscarpokemon" name="buscarpokemon" value="¿Quién es este pokemon?">
                 </form>
     </main>
 
-    <footer>
-                <div class="acomodarFooter">
-                        <div class="seccion1Footer">
-                                <div class="logoynombreFooter">
-                                        <img src="img/pokeball.png">
-                                        <h2>Pokedex</h2>
-                                </div>
-                                <div class="alumnos">
-                                            <ul>
-                                                <li><span>></span> Mayra Fazzari</li>
-                                                <li><span>></span> Agustin Pucci Rubio</li>
-                                                <li><span>></span> Solange De Bonis</li>
-                                                <li><span>></span> Ornella Alonso Reyes</li>
-                                            </ul>
-
-                                </div>
-
-                        </div>
-                        <div class="drev">
-                                <p>Derechos Reservados ©2024 Pokedex. Todos los derechos reservados.</p>
-                        </div>
-
-        </div>
-    </footer>
 </body>
 </html>
+
+<?php
+include ('footer.php')
+?>
