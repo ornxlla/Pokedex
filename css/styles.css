@@ -1,0 +1,16 @@
+.center-content {
+    display: flex;
+    justify-content: center;
+}
+.logo {
+    width: 120px;
+    height: auto;
+    margin-right: 10px;
+}
+.navbar-brand {
+    display: flex;
+    align-items: center;
+}
+.navbar-brand span {
+    margin-left: 10px;
+}
