@@ -6,6 +6,10 @@
     <title>Pokedex</title>
 </head>
 <body>
-
+<header>
+    <div class="logo">
+        <img src="img/p">
+    </div>
+</header>
 </body>
 </html>
