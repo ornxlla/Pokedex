@@ -1,36 +1,41 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-
 /*======HEADER======== */
-header{
-   border-bottom: 1px solid #b45c64;
+header {
+    border-bottom: 1px solid #b45c64;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
-nav{
+
+nav {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
-
 }
 
-.logo img{
+.logo img {
     width: 50px;
     height: 50px;
     margin: 1rem;
 }
 
-.nombrePag h1{
+.nombrePag h1 {
     font-family: "Pixelify Sans", sans-serif;
     font-size: 70px;
     color: red;
+    text-align: center;
 }
 
-.formularioIngreso input{
+.formularioIngreso {
+    display: flex;
+    flex-direction: row;
+}
+
+.formularioIngreso input {
     height: 40px;
     width: 150px;
     margin: 1rem;
@@ -38,25 +43,22 @@ nav{
     border: 2px solid red;
     background-color: white;
     font-family: "Poppins", sans-serif;
-
 }
 
-#ingreso{
-    background-color:red;
+#ingreso {
+    background-color: red;
     color: white;
     font-weight: bold;
 }
 
-#ingreso:hover{
-    background-color:white;
+#ingreso:hover {
+    background-color: white;
     color: red;
     transition-duration: 0.5s;
 }
 
-
 /*======MAIN======== */
-
-#buscar{
+#buscar {
     margin: 1rem;
     height: 40px;
     width: 80%;
@@ -67,31 +69,31 @@ nav{
     font-size: 18px;
 }
 
-#buscarpokemon{
+#buscarpokemon {
     margin: 0.5rem;
     height: 40px;
     width: 15%;
     border-radius: 5px;
     border: 2px solid red;
     font-family: "Poppins", sans-serif;
-    background-color:red;
+    background-color: red;
     color: white;
     font-weight: bold;
 }
 
 #buscarpokemon:hover {
-    background-color:white;
+    background-color: white;
     color: red;
     transition-duration: 0.5s;
 }
 
 /*======FOOTER======== */
-footer{
+footer {
     padding-top: 0.2rem;
     background-color: red;
 }
 
-.acomodarFooter{
+.acomodarFooter {
     margin: 1rem;
     display: flex;
     flex-direction: row;
@@ -99,53 +101,78 @@ footer{
     justify-content: space-between;
 }
 
-.logoynombreFooter{
+.logoynombreFooter {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
-.logoynombreFooter img{
+
+.logoynombreFooter img {
     height: 30px;
     width: 30px;
 }
 
-.logoynombreFooter h2{
+.logoynombreFooter h2 {
     font-family: "Pixelify Sans", sans-serif;
     color: white;
     font-size: 28px;
 }
 
-.alumnos{
+.alumnos {
     margin: 1rem;
-
 }
 
-.alumnos ul{
+.alumnos ul {
     list-style: none;
 }
 
-
-.alumnos ul span{
+.alumnos ul span {
     font-family: "Pixelify Sans", sans-serif;
     color: white;
 }
 
-.alumnos ul li{
+.alumnos ul li {
     font-family: "Poppins", sans-serif;
     color: white;
 }
 
-
-.alumnos ul li:hover{
+.alumnos ul li:hover {
     background: white;
     font-family: "Pixelify Sans", sans-serif;
     color: red;
     font-size: 16px;
 }
 
-.drev{
+.drev {
     display: flex;
     margin-top: 120px;
     color: white;
     font-family: "Poppins", sans-serif;
 }
+
+@media screen and (max-width: 480px) {
+    .nombrePag h1 {
+        font-size: 30px;
+        text-align: center;
+    }
+
+    #buscarpokemon {
+        width: 100%;
+        margin-right: 0;
+    }
+}
+
+@media screen and (min-width: 481px) and (max-width: 1285px) {
+    #buscarpokemon {
+        width: 100%;
+        margin-right: 0;
+    }
+}
+
+@media screen and (min-width: 1286px) {
+    #buscarpokemon {
+        width: 15%;
+        margin-right: 0.5rem;
+    }
+}
+
