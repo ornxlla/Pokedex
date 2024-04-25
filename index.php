@@ -1,9 +1,4 @@
 <?php
-include('header.php')
-?>
-
-<?php
-
 // esto no funciona viendolo
 if( isset($_GET["error"]) ){
     switch ($_GET["error"]){
@@ -36,6 +31,12 @@ if( isset($_GET["error"]) ){
 </head>
 <body>
 
+<header>
+    <?php
+    include('header.php')
+    ?>
+</header>
+
     <main>
                 <form action="php/busqueda.php" method="GET">
                         <input type="text" name="q" id="buscar" placeholder="Ingrese el nombre, tipo o número de pokemon">
@@ -43,9 +44,12 @@ if( isset($_GET["error"]) ){
                 </form>
     </main>
 
+<footer>
+    <?php
+    include ('footer.php')
+    ?>
+</footer>
+
 </body>
 </html>
 
-<?php
-include ('footer.php')
-?>
