@@ -176,3 +176,13 @@ footer {
     }
 }
 
+.error-message {
+    font-family: "Pixelify Sans", sans-serif;
+    color: #FF0000;
+    background-color: #FFEFEF;
+    padding: 10px;
+    border: 1px solid #FF0000;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+

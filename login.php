@@ -8,7 +8,6 @@ function consultarBD($usuario, $contrasenia)
     $password = "";
     $database = "usuarios";
 
-
     $conn = mysqli_connect($servername, $username, $password, $database);
 
     if (!$conn) {
@@ -21,19 +20,29 @@ function consultarBD($usuario, $contrasenia)
     return mysqli_num_rows($result) == 1;
 }
 
+session_start();
+
 if (isset($_POST["usuario"]) && isset($_POST["contrasenia"])) {
     $usuario = $_POST["usuario"];
     $contrasenia = $_POST["contrasenia"];
 
-    $esValido = consultarBD($usuario, $contrasenia);
+    if (empty($usuario) || empty($contrasenia)) {
+        header("location: index.php?error=2");
+        exit();
+    }
 
-    if ($esValido) {
+    if (consultarBD($usuario, $contrasenia)) {
         $_SESSION["usuario"] = $usuario;
         header("location: home.php");
         exit();
     } else {
-        $error_message = "usuario o contraseña incorrectos";
+        header("location: index.php?error=1");
+        exit();
     }
-} else {
-    $error_message = "ingresar un usuario y una contraseña";
+} elseif (isset($_POST["usuario"]) || isset($_POST["contrasenia"])) {
+    header("location: index.php?error=2");
+    exit();
 }
+
+
+?>
