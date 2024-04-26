@@ -1,20 +1,3 @@
-<?php
-// esto no funciona viendolo
-if( isset($_GET["error"]) ){
-    switch ($_GET["error"]){
-        case 1:
-            echo "<div style= color:red >Usuario y contraseña invalidos </div> ";
-            break;
-        case 2:
-            echo "<div style= color:red >Debe completar los datos </div> ";
-            break;
-        case 3:
-            echo "<div style=color:blue >error </div> ";
-            break;
-    }
-}
-
-?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -32,22 +15,34 @@ if( isset($_GET["error"]) ){
 <body>
 
 <header>
-    <?php
-    include('header.php')
-    ?>
+    <?php include('header.php') ?>
 </header>
 
-    <main>
-                <form action="php/busqueda.php" method="GET">
-                        <input type="text" name="q" id="buscar" placeholder="Ingrese el nombre, tipo o número de pokemon">
-                        <input type="submit" id="buscarpokemon" name="buscarpokemon" value="¿Quién es este pokemon?">
-                </form>
-    </main>
+<main>
+    <?php
+    if( isset($_GET["error"]) ){
+        switch ($_GET["error"]){
+            case 1:
+                echo "<div class='error-message'>Usuario y contraseña inválidos</div>";
+                break;
+            case 2:
+                echo "<div class='error-message'>Debe completar los datos</div>";
+                break;
+            case 3:
+                echo "<div class='error-message'>Error</div>";
+                break;
+        }
+    }
+    ?>
+
+    <form action="php/busqueda.php" method="GET">
+        <input type="text" name="q" id="buscar" placeholder="Ingrese el nombre, tipo o número de Pokémon">
+        <input type="submit" id="buscarpokemon" name="buscarpokemon" value="¿Quién es este Pokémon?">
+    </form>
+</main>
 
 <footer>
-    <?php
-    include ('footer.php')
-    ?>
+    <?php include('footer.php') ?>
 </footer>
 
 </body>
