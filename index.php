@@ -1,4 +1,5 @@
 <?php
+
 // esto no funciona viendolo
 if( isset($_GET["error"]) ){
     switch ($_GET["error"]){
