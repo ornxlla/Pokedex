@@ -10,12 +10,12 @@ $base_datos = "test";
 $conn = new mysqli($host, $usuario, $contrasenia, $base_datos);
 
 if ($conn->connect_error) {
-    die("Error al conectar con la base de datos: " . $conn->connect_error);
+    die("Error al conectar con db: " . $conn->connect_error);
 }else{
-    echo "<script> console.log('Conexión a bbdd exitosa')</script>";
+    echo "<script> console.log('Conexión a db exitosa')</script>";
 }
-    $sql = "SELECT * FROM tipo";
-    $result = $conn->query($sql);
+    $sql1 = "SELECT * FROM tipo";
+    $result = $conn->query($sql1);
 
     $tiposPokemon = array();
 
@@ -63,7 +63,8 @@ if ($conn->connect_error) {
         $errorControl = 0;
         #PROCESO - Guardar imagen del Pokemon en la carpeta img con un nombre unico
         $img_pokemon_dir = "./img/pokemones/";
-        $img_pokemon_file = $img_pokemon_dir . $timestamp . '.' . pathinfo($_FILES['img_pokemon']['name'], PATHINFO_EXTENSION);
+        $img_pokemon_name = $timestamp . '.' . pathinfo($_FILES['img_pokemon']['name'], PATHINFO_EXTENSION);
+        $img_pokemon_file = $img_pokemon_dir . $img_pokemon_name;
         $img_flag = 1;
 
         #Check de tipo de archivo
@@ -103,11 +104,49 @@ if ($conn->connect_error) {
                 fclose($archivo);
             }
         }
-        #TODO - Guardar datos de ID(No autoincremental), Nombre, Tipos y Nombre de imagen del Pokemon en la Base de Datos
+        #PROCESO - Guardar datos de ID(No autoincremental), Nombre, Tipos y Nombre de imagen del Pokemon en la Base de Datos
         if($errorControl == 0){
+            $sql2 = "INSERT INTO pokemon (id_pokemon, imagen, nombre, id_tipo_pokemon1, id_tipo_pokemon2)
+            VALUES ('" . $_POST['id_pokemon'] . "', '" . $img_pokemon_name  . "' , '". $_POST['name_pokemon'] ."' , '" . $_POST['tipo1_pokemon'] . "' , '" . $_POST['tipo2_pokemon'] . "')";
 
+            if($conn->query($sql2) === TRUE){
+                echo "<script> console.log('Pokemon agregado a la db!')</script>";
+            }else{
+                echo "<script> console.log('Error: " . $sql2 . " / " . $conn->error . "')</script>";
+                $errorControl = 3;
+            }
+            $conn->close();
         }
         #TODO - Al finalizar guardar, llevarla a la busqueda del mismo pokemon
-        echo "<script>alert('holis')</script>"; #Placeholder para que PHPStorm no joda;
-        #echo "<script>alert('holis'); window.location.href='./index.php'</script>"; #Placeholder para que PHPStorm no joda
+        switch($errorControl){
+            case 0:
+                echo "<script>
+                        alert('Se ha creado el pokemon de forma correcta');
+                        window.location.href='./index.php'
+                      </script>";
+                break;
+            case 1:
+                echo "<script>
+                        alert('Hubo un error con la imagen del pokemon. Intentelo nuevamente.');
+                        window.location.href='./crearPokemon.php'
+                      </script>";
+                break;
+            case 2:
+                echo "<script>
+                        alert('Hubo un error con la descripcion del pokemon. Intentelo nuevamente.');
+                        window.location.href='./crearPokemon.php'
+                      </script>";
+                break;
+            case 3:
+                echo "<script>
+                        alert('Hubo un error al crear el pokemon. Intentelo nuevamente.');
+                        window.location.href='./crearPokemon.php'
+                      </script>";
+                break;
+            default:
+                echo "<script>
+                        alert('Hubo un error inesperado. Intentelo nuevamente.');
+                        window.location.href='./crearPokemon.php'
+                      </script>";
+        }
     }
