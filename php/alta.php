@@ -28,7 +28,7 @@ if ($conn->connect_error) {
     }
 
 ?>
-<form action="" method="POST">
+<form action="" method="POST" enctype="multipart/form-data">
     <h2>¿Quien es este pokemon?</h2>
     <label for="id_pokemon">Numero de Pokemon:</label>
     <input type="number" id="id_pokemon" name="id_pokemon" min="0" placeholder="Numero de Pokemon"><br>
@@ -67,37 +67,47 @@ if ($conn->connect_error) {
         $img_flag = 1;
 
         #Check de tipo de archivo
-        $check_type = getimagesize($_FILES['img_pokemon']['tmp_name']);
-        if($check_type !== false) {
-            echo "<script>alert('El archivo no es una imagen')</script>";
+        $check_type = pathinfo($_FILES['img_pokemon']['name'], PATHINFO_EXTENSION);
+        if($check_type != 'jpg' && $check_type != 'png' && $check_type != 'jpeg' && $check_type != 'gif'){
+            echo "<script>console.log('El archivo no es una imagen')</script>";
             $img_flag = 0;
             $errorControl = 1;
         }
 
         #check de que el archivo no exista
         if(file_exists($img_pokemon_file)){
-            echo "<script>alert('El archivo ya existe'</script>";
+            echo "<script>console.log('El archivo de imagen ya existe'</script>";
             $img_flag = 0;
             $errorControl = 1;
         }
 
         #Despues de checkear errores, intenta subir
-        if($img_flag == 0){
+        if($img_flag == 1){
             if(move_uploaded_file($_FILES['img_pokemon']['tmp_name'], $img_pokemon_file)){
                 echo "<script>console.log('Imagen subida exitosamente')</script>";
             }else{
-                echo "<script>alert('Hubo un error al subir la imagen')</script>";
+                echo "<script>console.log('Hubo un error al subir la imagen')</script>";
                 $errorControl = 1;
             }
         }
-        #TODO - Guardar descripcion del Pokemon en un archivo .txt, con el mismo nombre que la imagen.
+        #PROCESO - Guardar descripcion del Pokemon en un archivo .txt, con el mismo nombre que la imagen.
         if($errorControl == 0){
-
+            $desc_pokemon = $_POST['desc_pokemon'];
+            $desc_pokemon_file = './txt/' . $timestamp . '.txt';
+            if(file_exists($desc_pokemon_file)){
+                echo "<script>console.log('El archivo de texto ya existe'</script>";
+                $errorControl = 2;
+            }else{
+                $archivo = fopen($desc_pokemon_file, "a");
+                fwrite($archivo, $desc_pokemon);
+                fclose($archivo);
+            }
         }
         #TODO - Guardar datos de ID(No autoincremental), Nombre, Tipos y Nombre de imagen del Pokemon en la Base de Datos
         if($errorControl == 0){
 
         }
         #TODO - Al finalizar guardar, llevarla a la busqueda del mismo pokemon
-        echo "<script>alert('holis'); window.location.href='./index.php'</script>"; #Placeholder para que PHPStorm no joda
+        echo "<script>alert('holis')</script>"; #Placeholder para que PHPStorm no joda;
+        #echo "<script>alert('holis'); window.location.href='./index.php'</script>"; #Placeholder para que PHPStorm no joda
     }
