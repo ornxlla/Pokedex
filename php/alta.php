@@ -38,7 +38,7 @@ if ($conn->connect_error) {
         echo "<select id='tipo1_pokemon' name='tipo1_pokemon'>";
         echo "<option value=''></option>";
         foreach ($tiposPokemon as $tipo) {
-            echo "<option value='".$tipo['id_tipo_pokemon']."'>".$tipo['descripcion']."</option>";
+            echo "<option value='" . $tipo['id_tipo_pokemon']."'>" . ucfirst($tipo['descripcion']) . "</option>";
         }
         echo "</select><br>";
 
@@ -46,7 +46,7 @@ if ($conn->connect_error) {
         echo "<select id='tipo2_pokemon' name='tipo2_pokemon'>";
         echo "<option value=''></option>";
         foreach ($tiposPokemon as $tipo) {
-            echo "<option value='".$tipo['id_tipo_pokemon']."'>".$tipo['descripcion']."</option>";
+            echo "<option value='" . $tipo['id_tipo_pokemon'] . "'>" .  ucfirst($tipo['descripcion']) . "</option>";
         }
         echo "</select><br>";
     ?>
