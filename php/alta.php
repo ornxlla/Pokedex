@@ -6,7 +6,6 @@ $usuario = "root";
 $contrasenia = "";
 $base_datos = "test";
 
-
 $conn = new mysqli($host, $usuario, $contrasenia, $base_datos);
 
 if ($conn->connect_error) {
@@ -117,7 +116,7 @@ if ($conn->connect_error) {
             }
             $conn->close();
         }
-        #TODO - Al finalizar guardar, llevarla a la busqueda del mismo pokemon
+        #PROCESO - Al finalizar guardar, llevarla a la busqueda del mismo pokemon
         switch($errorControl){
             case 0:
                 echo "<script>
