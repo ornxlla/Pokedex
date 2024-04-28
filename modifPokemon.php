@@ -17,7 +17,6 @@
 
 <header>
     <?php include('header.php') ?>
-
 </header>
 
 <main>
@@ -35,18 +34,19 @@
                 break;
         }
     }
+
+
+    #TODO - Si la sesion esta iniciada, mostrara el formulario. Sino, mostrara un DIV con "Acceso Denegado".
+
+    if(true){
+        require_once('php\modificacion.php');
+    }
     ?>
 
-    <form action="php/busqueda.php" method="GET">
-        <input type="text" name="q" id="buscar" placeholder="Ingrese el nombre, tipo o número de Pokémon">
-        <input type="submit" id="buscarpokemon" name="buscarpokemon" value="¿Quién es este Pokémon?">
-    </form>
 </main>
-
 <footer>
     <?php include('footer.php') ?>
 </footer>
 
 </body>
 </html>
-

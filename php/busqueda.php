@@ -1,11 +1,37 @@
 <?php
-if(isset($_GET['pokemon'])){
 
-    #TODO - Identificar variables del form (Es 1 campo y buscara por cualquiera en la BD? Es un formulario pseudo completo?)
+$host = "localhost";
+$usuario = "root";
+$contraseña = "";
+$base_datos = "pokemon2";
 
-    #TODO - Realizar busquedas en la base de datos. Si todas fallan, mostrara todos los registros.
 
-    #TODO - Segun por permisos, deberia mostrar/habilitar ciertos botones
+$conn = new mysqli($host, $usuario, $contraseña, $base_datos);
 
-    echo "holis"; #Placeholder para que PHPStorm no joda
+
+if ($conn->connect_error) {
+    die("Error al conectar con la base de datos: " . $conn->connect_error);
 }
+
+echo "Conexión exitosa" ;
+
+
+$sql = "SELECT * FROM pokemon";
+$resultado = $conn->query($sql);
+
+
+if ($resultado->num_rows > 0) {
+
+    echo "<h2>Pokémon:</h2>";
+    while ($fila = $resultado->fetch_assoc()) {
+        echo "Nombre: " . $fila['nombre'] . "<br>";
+        echo "Imagen: <img src='" . $fila['imagen'] . "'><br>";
+        echo "Tipo: " . $fila ['tipo'] . "<br>";
+        echo "<br>";
+    }
+} else {
+    echo "No se encontraron Pokémon.";
+}
+
+
+?>
