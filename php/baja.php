@@ -1,9 +1,24 @@
 <?php
-if(isset($_POST['submit'])){
+    function bajaPokemon($id_db){
+        $host = "localhost";
+        $usuario = "root";
+        $contrasenia = "";
+        $base_datos = "test";
 
-    #TODO - Despues de una confirmacion, que elimine los datos de la base de datos. (Borrado logico? O borrado comun?)
+        $conn = new mysqli($host, $usuario, $contrasenia, $base_datos);
 
-    #TODO - Borrar imagenes/texto? O simplemente perder la referencia y que queden en las carpetas?
+        if ($conn->connect_error) {
+            die("Error al conectar con db: " . $conn->connect_error);
+        }else{
+            echo "<script> console.log('Conexión a db exitosa')</script>";
+        }
 
-    echo "holis"; #Placeholder para que PHPStorm no joda
-}
+        $sql = "DELETE FROM pokemon WHERE id_pokemon = " . $id_db;
+        if($conn->query($sql) === TRUE){
+            echo "<script>console.log('Se ha borrado el registro de forma correcta.')</script>";
+            return true;
+        }else{
+            echo "<script>console.log('Hubo un error al borrar el registro.')</script>";
+            return false;
+        }
+    }
