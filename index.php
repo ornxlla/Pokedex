@@ -1,20 +1,4 @@
-<?php
-// esto no funciona viendolo
-if( isset($_GET["error"]) ){
-    switch ($_GET["error"]){
-        case 1:
-            echo "<div style= color:red >Usuario y contraseña invalidos </div> ";
-            break;
-        case 2:
-            echo "<div style= color:red >Debe completar los datos </div> ";
-            break;
-        case 3:
-            echo "<div style=color:blue >error </div> ";
-            break;
-    }
-}
 
-?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -34,6 +18,21 @@ if( isset($_GET["error"]) ){
 <header>
     <?php
     include('header.php')
+    ?>
+    <?php
+    if( isset($_GET["error"]) ){
+        switch ($_GET["error"]){
+            case 1:
+                echo "<div style= color:red >Usuario y contraseña invalidos </div> ";
+                break;
+            case 2:
+                echo "<div style= color:red >Debe completar los datos </div> ";
+                break;
+            case 3:
+                echo "<div style=color:blue >error </div> ";
+                break;
+        }
+    }
     ?>
 </header>
 
