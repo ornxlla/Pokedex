@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `pokemon` (
-  `id_bdd` int(11) NOT NULL,
+  `id_bdd` int(11) NOT NULL AUTO_INCREMENT,
   `id_pokemon` int(11) NOT NULL,
   `imagen` varchar(255) NOT NULL,
   `nombre` varchar(255) NOT NULL,
@@ -43,7 +43,7 @@ CREATE TABLE `pokemon` (
 --
 
 CREATE TABLE `tipo` (
-  `id_tipo_pokemon` int(11) NOT NULL,
+  `id_tipo_pokemon` int(11) NOT NULL AUTO_INCREMENT,
   `descripcion` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

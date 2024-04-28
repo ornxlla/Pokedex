@@ -4,7 +4,7 @@ $timestamp = time();
 $host = "localhost";
 $usuario = "root";
 $contrasenia = "";
-$base_datos = "test";
+$base_datos = "pokemon";
 
 $conn = new mysqli($host, $usuario, $contrasenia, $base_datos);
 
