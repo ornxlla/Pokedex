@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/tablapokemon.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
@@ -47,11 +49,30 @@
     <?php
 
     if(isset($_SESSION['usuario'])){
-        echo "¡¡Bienvenido " . $_SESSION['usuario'] . " !!";
+        echo "<h2>Bienvenid@ " . $_SESSION['usuario'] . "</h2>";
     } else {
         header('Location: index.php');
     }
     ?>
+
+    <form action="busqueda.php" method="GET">
+        <input type="text" name="q" id="buscar" placeholder="Ingrese el nombre, tipo o número de Pokémon">
+        <input type="submit" id="buscarpokemon" name="buscarpokemon" value="¿Quién es este Pokémon?">
+    </form>
+
+    <h2 class="pokd">Pokemon disponibles</h2>
+    <div class="pokemonesDisponibles">
+            <?php
+            include("php/tablapokemon.php")
+            ?>
+
+    </div>
+
+    <div class="subirpoke">
+    <form action="crearPokemon.php" method="GET">
+        <input type="submit" name="subirPokemon" id="subirPokemon" value="Subir Pokemon">
+    </form>
+    </div>
 </main>
 
 <footer>

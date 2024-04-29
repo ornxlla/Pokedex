@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/tablapokemon.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
@@ -41,6 +44,16 @@
         <input type="text" name="q" id="buscar" placeholder="Ingrese el nombre, tipo o número de Pokémon">
         <input type="submit" id="buscarpokemon" name="buscarpokemon" value="¿Quién es este Pokémon?">
     </form>
+
+    <h2 class="pokd">Pokemon disponibles</h2>
+    <div class="pokemonesDisponibles">
+        <?php
+        include("php/tablapokemon.php")
+        ?>
+    </div>
+
+        <!--<div class='tipoPoke'><p>Tipo/s</p> <img src='img/tipo_" . $poke["id_tipo_pokemon"] . ".'> <img src='img/" . $poke["id_tipo_pokemon2"] . "'></div>-->
+    </div>
 </main>
 
 <footer>

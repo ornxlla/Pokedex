@@ -24,7 +24,7 @@
     $host = "localhost";
     $usuario = "root";
     $contraseña = "";
-    $base_datos = "pokemon2";
+    $base_datos = "pokemon";
 
     $conn = new mysqli($host, $usuario, $contraseña, $base_datos);
 
