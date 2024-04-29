@@ -37,7 +37,7 @@
     }
     ?>
 
-    <form action="php/busqueda.php" method="GET">
+    <form action="busqueda.php" method="GET">
         <input type="text" name="q" id="buscar" placeholder="Ingrese el nombre, tipo o número de Pokémon">
         <input type="submit" id="buscarpokemon" name="buscarpokemon" value="¿Quién es este Pokémon?">
     </form>
