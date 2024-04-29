@@ -14,13 +14,11 @@ function consultarBD($usuario, $contrasenia)
         die("Error al conectar con la base de datos: " . mysqli_connect_error());
     }
 
-    $sql = "SELECT * FROM login WHERE usuario = '" . $usuario . "' && contrasenia = '" . $contrasenia . "'";
+    $sql = "SELECT * FROM login WHERE usuario = '" . $usuario . "' AND contrasenia = '" . $contrasenia . "'";
     $result = mysqli_query($conn, $sql);
 
-    return mysqli_num_rows($result) == 1;
+    return $result;
 }
-
-session_start();
 
 if (isset($_POST["usuario"]) && isset($_POST["contrasenia"])) {
     $usuario = $_POST["usuario"];
@@ -31,10 +29,18 @@ if (isset($_POST["usuario"]) && isset($_POST["contrasenia"])) {
         exit();
     }
 
-    if (consultarBD($usuario, $contrasenia)) {
+    $result = consultarBD($usuario, $contrasenia);
+
+    if (mysqli_num_rows($result) == 1) {
+        $row = mysqli_fetch_assoc($result);
         $_SESSION["usuario"] = $usuario;
-        header("location: home.php");
-        exit();
+        if ($row["es_administrador"] == 1) {
+            header("location: admin.php");
+            exit();
+        } else {
+            header("location: home.php");
+            exit();
+        }
     } else {
         header("location: index.php?error=1");
         exit();
@@ -44,5 +50,5 @@ if (isset($_POST["usuario"]) && isset($_POST["contrasenia"])) {
     exit();
 }
 
-
 ?>
+

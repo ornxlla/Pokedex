@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-04-2024 a las 03:27:40
+-- Tiempo de generación: 29-04-2024 a las 03:03:15
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -29,16 +29,17 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `login` (
                          `usuario` varchar(200) NOT NULL,
-                         `contrasenia` varchar(200) NOT NULL
+                         `contrasenia` varchar(200) NOT NULL,
+                         `es_administrador` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `login`
 --
 
-INSERT INTO `login` (`usuario`, `contrasenia`) VALUES
-                                                   ('poke', '1234'),
-                                                   ('poke', '12345');
+INSERT INTO `login` (`usuario`, `contrasenia`, `es_administrador`) VALUES
+                                                                       ('pokeadmin', '1234', 1),
+                                                                       ('poke', '12345', 0);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
