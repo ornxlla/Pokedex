@@ -1,0 +1,57 @@
+main{
+    display: flex;
+    justify-content: center;
+}
+h2{
+    margin: 2%;
+    display: flex;
+    justify-content: center;
+    font-family: "Poppins", sans-serif;
+    font-size: 25px;
+    color: black;
+    font-weight: bold;
+}
+
+label{
+    font-family: "Poppins", sans-serif;
+    font-size: 18px;
+}
+
+input{
+    height: 30px;
+    width: 100%;
+    margin-bottom: 1%;
+    border-radius: 5px;
+    border: 2px solid red;
+    background-color: white;
+    font-family: "Poppins", sans-serif;
+}
+
+textarea{
+    margin-bottom: 1%;
+    border-radius: 5px;
+    border: 2px solid red;
+}
+
+select{
+    margin-bottom: 1%;
+    border-radius: 5px;
+    border: 2px solid red;
+    width: 100%;
+}
+
+#crearPokemon{
+    height: 50px;
+    border-radius: 5px;
+    border: 2px solid red;
+    font-family: "Poppins", sans-serif;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+}
+
+#crearPokemon:hover{
+    background-color: white;
+    color: red;
+    transition-duration: 0.5s;
+}

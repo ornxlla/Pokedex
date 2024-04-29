@@ -9,7 +9,7 @@ $base_datos = "pokemon";
 $conn = new mysqli($host, $usuario, $contrasenia, $base_datos);
 
 if ($conn->connect_error) {
-    die("Error al conectar con db: " . $conn->connect_error);
+    die("Error al conectar con db: " . $conn->connect_error . "");
 }else{
     echo "<script> console.log('Conexión a db exitosa')</script>";
 }
@@ -34,7 +34,7 @@ if ($conn->connect_error) {
     <label for="name_pokemon">Nombre: </label>
     <input type="text" id="name_pokemon" name="name_pokemon" placeholder="Nombre de Pokemon"><br>
     <?php
-        echo "<label for='tipo1_pokemon'>Tipo primario:</label>";
+        echo "<label for='tipo1_pokemon'>Tipo primario:</label><br>";
         echo "<select id='tipo1_pokemon' name='tipo1_pokemon'>";
         echo "<option value=''></option>";
         foreach ($tiposPokemon as $tipo) {
@@ -42,7 +42,7 @@ if ($conn->connect_error) {
         }
         echo "</select><br>";
 
-        echo "<label for='tipo2_pokemon'>Tipo secundario:</label>";
+        echo "<label for='tipo2_pokemon'>Tipo secundario:</label><br>";
         echo "<select id='tipo2_pokemon' name='tipo2_pokemon'>";
         echo "<option value=''></option>";
         foreach ($tiposPokemon as $tipo) {
@@ -50,9 +50,9 @@ if ($conn->connect_error) {
         }
         echo "</select><br>";
     ?>
-    <label for="img_pokemon">Imagen: </label>
+    <label for="img_pokemon">Imagen:</label>
     <input type="file" id="img_pokemon" name="img_pokemon"><br>
-    <label for="desc_pokemon">Descripcion: </label><br>
+    <label for="desc_pokemon">Descripcion:</label><br>
     <textarea id="desc_pokemon" name="desc_pokemon" rows="10" cols="100" placeholder="Descripcion del pokemon..."></textarea><br>
     <input type="submit" id="crearPokemon" name="crearPokemon" value="Crear">
 </form>

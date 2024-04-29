@@ -1,0 +1,22 @@
+
+
+.tabla{
+    border-radius: 5px;
+    border: 2px solid red;
+    margin: 2%;
+}
+
+.tabla p{
+   text-align: center;
+
+}
+
+.tabla img{
+    width: 150px;
+    height: 150px;
+    justify-content: center;
+}
+
+p{
+    font-family: "Poppins", sans-serif;
+}

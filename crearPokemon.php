@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/crearPokemon.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
@@ -16,7 +17,31 @@
 <body>
 
 <header>
-    <?php include('header.php') ?>
+    <nav>
+        <div class="logo">
+            <img src="img/pokeball.png">
+        </div>
+
+        <div class="nombrePag">
+            <h1>Pokedex</h1>
+        </div>
+
+        <div class="user-info">
+            <?php
+            session_start();
+            if(isset($_SESSION['usuario'])){
+                echo "<p class='usuarioBienvenido'>USUARIO:" . $_SESSION['usuario'] . "</p>";
+                echo "<div class='usuarioLog'>";
+                echo "<a href='editarPerfil.php'>Editar</a>";
+                echo "<a href='index.php'>Cerrar sesión</a>";
+                echo "</div>";
+            } else {
+                echo "<form action='login.php' method='post'>";
+
+            }
+            ?>
+        </div>
+    </nav>
 </header>
 
 <main>

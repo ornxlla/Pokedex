@@ -162,12 +162,6 @@ footer {
     }
 }
 
-@media screen and (min-width: 481px) and (max-width: 1285px) {
-    #buscarpokemon {
-        width: 100%;
-        margin-right: 0;
-    }
-}
 
 @media screen and (min-width: 1286px) {
     #buscarpokemon {
