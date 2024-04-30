@@ -42,12 +42,12 @@
     $pokemonBuscado = isset($_GET['busqueda']) ? $_GET['busqueda'] : '';
 
     $sql = "SELECT p.* FROM pokemon p 
-        LEFT JOIN tipo t1 ON p.id_tipo_pokemon1 = t1.id_tipo_pokemon
-        LEFT JOIN tipo t2 ON p.id_tipo_pokemon2 = t2.id_tipo_pokemon
-        WHERE p.nombre LIKE '%$pokemonBuscado%' 
-        OR t1.descripcion LIKE '%$pokemonBuscado%' 
-        OR t2.descripcion LIKE '%$pokemonBuscado%' 
-        OR p.id_pokemon = '$pokemonBuscado'";
+    LEFT JOIN tipo t1 ON p.id_tipo_pokemon1 = t1.id_tipo_pokemon
+    LEFT JOIN tipo t2 ON p.id_tipo_pokemon2 = t2.id_tipo_pokemon
+    WHERE p.nombre LIKE '%$pokemonBuscado%' 
+    OR t1.descripcion LIKE '%$pokemonBuscado%' 
+    OR t2.descripcion LIKE '%$pokemonBuscado%' 
+    OR p.id_pokemon = '$pokemonBuscado'";
 
     $resultado = $conn->query($sql);
 
@@ -59,13 +59,39 @@
             echo "<div class='nombrePokeBus'><p>" . $fila['nombre'] . "</p></div>";
             echo "<div class='numeroPokeBus'><p>#" . $fila['id_pokemon'] . "</p></div>";
             echo "</div>";
-
         }
-
     } else {
-        echo "<div class='error-message'>Pokemon no encontrado</div>";
+
+
+        //verifica si ya se hizo la busqueda
+        if (!isset($_GET['busqueda']) || $_GET['busqueda'] === '') {
+            echo "<div class='error-message'>Introduce un término de búsqueda</div>";
+        } else {
+            echo "<div class='error-message'>Pokemon no encontrado</div>";
+
+            //muestra todos los disponibles
+            $sql_todos = "SELECT * FROM pokemon";
+            $resultado_todos = $conn->query($sql_todos);
+
+            if ($resultado_todos->num_rows > 0) {
+
+                while ($fila_todos = $resultado_todos->fetch_assoc()) {
+                    echo "<div class='tablaBus'>";
+                    echo "<div class='imagenPokeBus'><img src='img/pokemones/" . $fila_todos['imagen'] . "' alt='" . $fila_todos['nombre'] . "'></div>";
+                    echo "<div class='nombrePokeBus'><p>" . $fila_todos['nombre'] . "</p></div>";
+                    echo "<div class='numeroPokeBus'><p>#" . $fila_todos['id_pokemon'] . "</p></div>";
+                    echo "</div>";
+                }
+            } else {
+
+                echo "<div class='error-message'>No hay Pokémon disponibles</div>";
+            }
+        }
     }
+
+    $conn->close();
     ?>
+
 
 
 </main>
