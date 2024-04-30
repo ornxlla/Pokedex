@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -28,7 +32,6 @@
 
         <div class="user-info">
             <?php
-            session_start();
             if(isset($_SESSION['usuario'])){
                 echo "<p class='usuarioBienvenido'>USUARIO:" . $_SESSION['usuario'] . "</p>";
                 echo "<div class='usuarioLog'>";
@@ -44,12 +47,19 @@
     </nav>
 </header>
 
-
 <main>
     <?php
-
     if(isset($_SESSION['usuario'])){
-        echo "<h2>Bienvenid@ " . $_SESSION['usuario'] . "</h2>";
+        if(isset($_GET['admin']) && $_GET['admin'] == 'true') {
+            echo "<h2>Bienvenid@ " . $_SESSION['usuario'] . " (Administrador)</h2>";
+            echo "<div class='acciones-admin'>";
+            echo "<a href='alta.php' class='btn-accion'>Alta de Pokémon</a>";
+            echo "<a href='baja.php' class='btn-accion'>Baja de Pokémon</a>";
+            echo "<a href='modificacion.php' class='btn-accion'>Modificación de Pokémon</a>";
+            echo "</div>";
+        } else {
+            echo "<h2>Bienvenid@ " . $_SESSION['usuario'] . "</h2>";
+        }
     } else {
         header('Location: index.php');
     }
@@ -62,21 +72,24 @@
 
     <h2 class="pokd">Pokemones disponibles</h2>
     <div class="pokemonesDisponibles">
-            <?php
-            include("php/tablapokemon.php")
-            ?>
-
+        <?php
+        include("php/tablapokemon.php")
+        ?>
     </div>
 
     <div class="subirpoke">
-    <form action="crearPokemon.php" method="GET">
-        <input type="submit" name="subirPokemon" id="subirPokemon" value="Subir Pokemon">
-    </form>
+        <form action="crearPokemon.php" method="GET">
+            <input type="submit" name="subirPokemon" id="subirPokemon" value="Subir Pokemon">
+        </form>
     </div>
 </main>
+
 
 <footer>
     <?php
     include ('footer.php')
     ?>
 </footer>
+
+</body>
+</html>

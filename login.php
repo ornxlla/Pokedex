@@ -35,7 +35,7 @@ if (isset($_POST["usuario"]) && isset($_POST["contrasenia"])) {
         $row = mysqli_fetch_assoc($result);
         $_SESSION["usuario"] = $usuario;
         if ($row["es_administrador"] == 1) {
-            header("location: admin.php");
+            header("location: home.php?admin=true");
             exit();
         } else {
             header("location: home.php");
@@ -51,4 +51,3 @@ if (isset($_POST["usuario"]) && isset($_POST["contrasenia"])) {
 }
 
 ?>
-
