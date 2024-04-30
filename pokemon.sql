@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-04-2024 a las 20:16:02
+-- Tiempo de generación: 30-04-2024 a las 05:32:53
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -35,6 +35,14 @@ CREATE TABLE `pokemon` (
   `id_tipo_pokemon1` int(16) NOT NULL,
   `id_tipo_pokemon2` int(16) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `pokemon`
+--
+
+INSERT INTO `pokemon` (`id_bdd`, `id_pokemon`, `imagen`, `nombre`, `id_tipo_pokemon1`, `id_tipo_pokemon2`) VALUES
+(4, 1, '1714415092.png', 'Bulbasaur', 1, 7),
+(5, 148, '1714420200.png', 'Dragonair', 14, 15);
 
 -- --------------------------------------------------------
 
@@ -96,7 +104,7 @@ ALTER TABLE `tipo`
 -- AUTO_INCREMENT de la tabla `pokemon`
 --
 ALTER TABLE `pokemon`
-  MODIFY `id_bdd` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_bdd` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo`
