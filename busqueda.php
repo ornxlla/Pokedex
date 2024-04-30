@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/tablapokemon.css">
+    <link rel="stylesheet" href="css/busqueda.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
@@ -20,6 +20,13 @@
 </header>
 
 <main>
+
+    <form action="busqueda.php" method="GET">
+        <input type="text" name="busqueda" id="buscar" placeholder="Ingrese el nombre, tipo o número de Pokémon">
+        <input type="submit" id="buscarpokemon" name="buscarpokemon" value="¿Quién es este Pokémon?">
+    </form>
+
+
     <?php
     $host = "localhost";
     $usuario = "root";
@@ -34,20 +41,23 @@
 
     $pokemonBuscado = isset($_GET['busqueda']) ? $_GET['busqueda'] : '';
 
-    $sql = "SELECT * FROM pokemon";
-    if (!empty($pokemonBuscado)) {
-        $sql .= " WHERE nombre LIKE '%$pokemonBuscado%'";
-    }
+    $sql = "SELECT p.* FROM pokemon p 
+        LEFT JOIN tipo t1 ON p.id_tipo_pokemon1 = t1.id_tipo_pokemon
+        LEFT JOIN tipo t2 ON p.id_tipo_pokemon2 = t2.id_tipo_pokemon
+        WHERE p.nombre LIKE '%$pokemonBuscado%' 
+        OR t1.descripcion LIKE '%$pokemonBuscado%' 
+        OR t2.descripcion LIKE '%$pokemonBuscado%' 
+        OR p.id_pokemon = '$pokemonBuscado'";
 
     $resultado = $conn->query($sql);
 
     if ($resultado->num_rows > 0) {
 
         while ($fila = $resultado->fetch_assoc()) {
-            echo "<div class='tabla'>";
-            echo "<div class='imagenPoke'><img src='img/pokemones/" . $fila['imagen'] . "' alt='" . $fila['nombre'] . "'></div>";
-            echo "<div class='nombrePoke'><p>" . $fila['nombre'] . "</p></div>";
-            echo "<div class='numeroPoke'><p>#" . $fila['id_pokemon'] . "</p></div>";
+            echo "<div class='tablaBus'>";
+            echo "<div class='imagenPokeBus'><img src='img/pokemones/" . $fila['imagen'] . "' alt='" . $fila['nombre'] . "'></div>";
+            echo "<div class='nombrePokeBus'><p>" . $fila['nombre'] . "</p></div>";
+            echo "<div class='numeroPokeBus'><p>#" . $fila['id_pokemon'] . "</p></div>";
             echo "</div>";
 
         }
@@ -56,6 +66,7 @@
         echo "<div class='error-message'>Pokemon no encontrado</div>";
     }
     ?>
+
 
 </main>
 <footer>

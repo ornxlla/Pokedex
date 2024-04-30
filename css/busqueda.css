@@ -1,0 +1,22 @@
+.tablaBus {
+    border-radius: 5px;
+    border: 2px solid red;
+    margin: 2%;
+    width: 150px;
+    display: inline-block;
+}
+
+
+.imagenPokeBus img {
+    width: 100%;
+    height: auto;
+}
+
+
+.tablaBus p {
+    text-align: center;
+}
+
+p {
+    font-family: "Poppins", sans-serif;
+}
