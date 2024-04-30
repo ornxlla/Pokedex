@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/tablapokemon.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
@@ -20,7 +21,6 @@
 
 <main>
     <?php
-
     $host = "localhost";
     $usuario = "root";
     $contraseña = "";
@@ -31,11 +31,8 @@
     if ($conn->connect_error) {
         die("Error al conectar con la base de datos: " . $conn->connect_error);
     }
-    //echo "conexion exitosa";
-
 
     $pokemonBuscado = isset($_GET['busqueda']) ? $_GET['busqueda'] : '';
-
 
     $sql = "SELECT * FROM pokemon";
     if (!empty($pokemonBuscado)) {
@@ -45,29 +42,21 @@
     $resultado = $conn->query($sql);
 
     if ($resultado->num_rows > 0) {
-        echo "<h2>Pokémon:</h2>";
-        echo "<div class='contenedor'>";
+
         while ($fila = $resultado->fetch_assoc()) {
-            echo "Nombre: " . $fila['nombre'] . "<br>";
-            echo "Imagen: <img src='" . $fila['imagen'] . "'><br>";
-            echo "Tipo: " . $fila['tipo'] . "<br>";
-            echo "<br>";
+            echo "<div class='tabla'>";
+            echo "<div class='imagenPoke'><img src='img/pokemones/" . $fila['imagen'] . "' alt='" . $fila['nombre'] . "'></div>";
+            echo "<div class='nombrePoke'><p>" . $fila['nombre'] . "</p></div>";
+            echo "<div class='numeroPoke'><p>#" . $fila['id_pokemon'] . "</p></div>";
+            echo "</div>";
+
         }
-    } else{
+
+    } else {
         echo "<div class='error-message'>Pokemon no encontrado</div>";
-        $sql = "SELECT * FROM pokemon";
-        $resultados = $conn->query($sql);
-        echo "<div class='contenedor'>";
-        while ($fila = $resultados->fetch_assoc()) {
-            echo "Nombre: " . $fila['nombre'] . "<br>";
-            echo "Imagen: <img src='" . $fila['imagen'] . "'><br>";
-            echo "Tipo: " . $fila['tipo'] . "<br><br>";
-        }
-        echo "</div>";
-
     }
-
     ?>
+
 </main>
 <footer>
     <?php include('footer.php') ?>

@@ -56,11 +56,11 @@
     ?>
 
     <form action="busqueda.php" method="GET">
-        <input type="text" name="q" id="buscar" placeholder="Ingrese el nombre, tipo o número de Pokémon">
+        <input type="text" name="busqueda" id="buscar" placeholder="Ingrese el nombre, tipo o número de Pokémon">
         <input type="submit" id="buscarpokemon" name="buscarpokemon" value="¿Quién es este Pokémon?">
     </form>
 
-    <h2 class="pokd">Pokemon disponibles</h2>
+    <h2 class="pokd">Pokemones disponibles</h2>
     <div class="pokemonesDisponibles">
             <?php
             include("php/tablapokemon.php")

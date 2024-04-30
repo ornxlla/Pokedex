@@ -208,8 +208,12 @@ footer {
     text-decoration: underline;
     color: #FF0000;
 }
-
+/*
 .contenedor{
     border: 2px solid #FF0000;
-}
+    margin: 2em;
+    padding: 5px;
+    border-radius: 5px;
+
+}*/
 
