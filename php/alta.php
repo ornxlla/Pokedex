@@ -105,8 +105,13 @@ if ($conn->connect_error) {
         }
         #PROCESO - Guardar datos de ID(No autoincremental), Nombre, Tipos y Nombre de imagen del Pokemon en la Base de Datos
         if($errorControl == 0){
-            $sql2 = "INSERT INTO pokemon (id_pokemon, imagen, nombre, id_tipo_pokemon1, id_tipo_pokemon2)
+            if(isset($_POST['tipo2_pokemon'])){
+                $sql2 = "INSERT INTO pokemon (id_pokemon, imagen, nombre, id_tipo_pokemon1, id_tipo_pokemon2)
             VALUES ('" . $_POST['id_pokemon'] . "', '" . $img_pokemon_name  . "' , '". $_POST['name_pokemon'] ."' , '" . $_POST['tipo1_pokemon'] . "' , '" . $_POST['tipo2_pokemon'] . "')";
+            }else{
+                $sql2 = "INSERT INTO pokemon (id_pokemon, imagen, nombre, id_tipo_pokemon1)
+            VALUES ('" . $_POST['id_pokemon'] . "', '" . $img_pokemon_name  . "' , '". $_POST['name_pokemon'] ."' , '" . $_POST['tipo1_pokemon'] . "')";
+            }
 
             if($conn->query($sql2) === TRUE){
                 echo "<script> console.log('Pokemon agregado a la db!')</script>";
