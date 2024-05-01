@@ -39,7 +39,7 @@
     if(isset($_GET['admin']) && $_GET['admin'] == 'true'){
         require_once('php\alta.php');
     }else{
-        echo "<div><img src='img/msg/acceso_denagado.png' alt='Acceso Denegado' width='960' height='540' </div>";
+        echo "<div><img src='img/msg/acceso_denegado.png' alt='Acceso Denegado' width='960' height='540' </div>";
     }
 
 ?>
