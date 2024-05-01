@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-05-2024 a las 03:30:14
+-- Tiempo de generación: 01-05-2024 a las 05:03:58
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -44,7 +44,11 @@ INSERT INTO `pokemon` (`id_bdd`, `id_pokemon`, `imagen`, `nombre`, `id_tipo_poke
                                                                                                                (4, 1, '1714415092.png', 'Bulbasaur', 1, 7),
                                                                                                                (5, 148, '1714420200.png', 'Dragonair', 14, 15),
                                                                                                                (6, 1001, 'Squirtle.png', 'Squirtle', 3, NULL),
-                                                                                                               (7, 1002, 'Charmander.png', 'Charmander', 2, NULL);
+                                                                                                               (7, 1002, 'Charmander.png', 'Charmander', 2, NULL),
+                                                                                                               (8, 1003, 'Articuno.png', 'Articuno', 14, NULL),
+                                                                                                               (9, 1004, 'Arbok.png', 'Arbok', 7, NULL),
+                                                                                                               (10, 1005, 'Butterfree.png', 'Butterfree', 16, 4),
+                                                                                                               (11, 1006, 'Dodrio.png', 'Dodrio', 4, NULL);
 
 --
 -- Índices para tablas volcadas
@@ -67,7 +71,7 @@ ALTER TABLE `pokemon`
 -- AUTO_INCREMENT de la tabla `pokemon`
 --
 ALTER TABLE `pokemon`
-    MODIFY `id_bdd` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+    MODIFY `id_bdd` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Restricciones para tablas volcadas
