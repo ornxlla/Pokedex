@@ -52,11 +52,7 @@ session_start();
     if(isset($_SESSION['usuario'])){
         if(isset($_GET['admin']) && $_GET['admin'] == 'true') {
             echo "<h2>Bienvenid@ " . $_SESSION['usuario'] . " (Administrador)</h2>";
-            echo "<div class='acciones-admin'>";
-            echo "<a href='alta.php' class='btn-accion'>Alta de Pokémon</a>";
-            echo "<a href='baja.php' class='btn-accion'>Baja de Pokémon</a>";
-            echo "<a href='modificacion.php' class='btn-accion'>Modificación de Pokémon</a>";
-            echo "</div>";
+
         } else {
             echo "<h2>Bienvenid@ " . $_SESSION['usuario'] . "</h2>";
         }
