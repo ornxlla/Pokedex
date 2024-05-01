@@ -1,5 +1,5 @@
 <?php
-    //if(isset($_GET['admin']) && $_GET['admin'] == 'true'){
+    if(isset($_GET['admin']) && $_GET['admin'] == 'true'){
         if(isset($_GET['id'])){
             if($_GET['id']>=1){
                 bajaPokemon($_GET['id']);
@@ -9,9 +9,9 @@
         }else{
             echo "<script>alert('Error: ID no seteado.');</script>";
         }
-    //}else{
-    //    echo "<script>alert('Error: No tienes permisos para realizar esta accion.');</script>";
-    //}
+    }else{
+        echo "<script>alert('Error: No tienes permisos para realizar esta accion.');</script>";
+    }
 
 
     //header('location:../index.php');
