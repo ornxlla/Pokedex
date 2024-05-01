@@ -35,11 +35,10 @@
         }
     }
 
-
-    #TODO - Si la sesion esta iniciada, mostrara el formulario. Sino, mostrara un DIV con "Acceso Denegado".
-
-    if(true){
+    if(isset($_GET['admin']) && $_GET['admin'] == 'true'){
         require_once('php\modificacion.php');
+    }else{
+        echo "<div><img src='img/msg/acceso_denagado.png' alt='Acceso Denegado' width='960' height='540' </div>";
     }
     ?>
 
