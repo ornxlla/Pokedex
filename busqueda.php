@@ -41,13 +41,14 @@
 
     $pokemonBuscado = isset($_GET['busqueda']) ? $_GET['busqueda'] : '';
 
-    $sql = "SELECT p.* FROM pokemon p 
-    LEFT JOIN tipo t1 ON p.id_tipo_pokemon1 = t1.id_tipo_pokemon
-    LEFT JOIN tipo t2 ON p.id_tipo_pokemon2 = t2.id_tipo_pokemon
-    WHERE p.nombre LIKE '%$pokemonBuscado%' 
-    OR t1.descripcion LIKE '%$pokemonBuscado%' 
-    OR t2.descripcion LIKE '%$pokemonBuscado%' 
-    OR p.id_pokemon = '$pokemonBuscado'";
+    $sql = "SELECT p.*, t1.descripcion AS tipo1, t2.descripcion AS tipo2 
+            FROM pokemon p 
+            LEFT JOIN tipo t1 ON p.id_tipo_pokemon1 = t1.id_tipo_pokemon
+            LEFT JOIN tipo t2 ON p.id_tipo_pokemon2 = t2.id_tipo_pokemon
+            WHERE p.nombre LIKE '%$pokemonBuscado%' 
+            OR t1.descripcion LIKE '%$pokemonBuscado%' 
+            OR t2.descripcion LIKE '%$pokemonBuscado%' 
+            OR p.id_pokemon = '$pokemonBuscado'";
 
     $resultado = $conn->query($sql);
 
@@ -61,7 +62,6 @@
             echo "</div>";
         }
     } else {
-
 
         //verifica si ya se hizo la busqueda
         if (!isset($_GET['busqueda']) || $_GET['busqueda'] === '') {
@@ -91,7 +91,6 @@
 
     $conn->close();
     ?>
-
 
 
 </main>
