@@ -162,12 +162,6 @@ footer {
     }
 }
 
-@media screen and (min-width: 481px) and (max-width: 1285px) {
-    #buscarpokemon {
-        width: 100%;
-        margin-right: 0;
-    }
-}
 
 @media screen and (min-width: 1286px) {
     #buscarpokemon {
@@ -185,4 +179,41 @@ footer {
     border-radius: 5px;
     margin-bottom: 10px;
 }
+
+.usuarioBienvenido{
+    font-family: 'Pixelify Sans', sans-serif;
+    color: white;
+    margin-top: 20px;
+    background-color: red;
+    padding: 5px;
+    border-radius: 5px;
+    margin-right: 2em;
+}
+
+.usuarioLog{
+    color: red;
+    text-decoration: none;
+    font-family: 'Pixelify Sans', sans-serif;
+    font-size: 16px;
+    margin-right: 20px;
+}
+
+.usuarioLog a {
+    margin-right: 10px;
+    text-decoration: none;
+    color: #333;
+}
+
+.usuarioLog a:hover {
+    text-decoration: underline;
+    color: #FF0000;
+}
+/*
+.contenedor{
+    border: 2px solid #FF0000;
+    margin: 2em;
+    padding: 5px;
+    border-radius: 5px;
+
+}*/
 

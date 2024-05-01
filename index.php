@@ -1,30 +1,13 @@
-<<<<<<< HEAD
-<?php
 
-// esto no funciona viendolo
-if( isset($_GET["error"]) ){
-    switch ($_GET["error"]){
-        case 1:
-            echo "<div style= color:red >Usuario y contraseña invalidos </div> ";
-            break;
-        case 2:
-            echo "<div style= color:red >Debe completar los datos </div> ";
-            break;
-        case 3:
-            echo "<div style=color:blue >error </div> ";
-            break;
-    }
-}
-
-?>
-=======
->>>>>>> e971f6b63c718b33d0cf42abefd81472be616507
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/tablapokemon.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
@@ -37,6 +20,7 @@ if( isset($_GET["error"]) ){
 
 <header>
     <?php include('header.php') ?>
+
 </header>
 
 <main>
@@ -56,10 +40,20 @@ if( isset($_GET["error"]) ){
     }
     ?>
 
-    <form action="php/busqueda.php" method="GET">
-        <input type="text" name="q" id="buscar" placeholder="Ingrese el nombre, tipo o número de Pokémon">
+    <form action="busqueda.php" method="GET">
+        <input type="text" name="busqueda" id="buscar" placeholder="Ingrese el nombre, tipo o número de Pokémon">
         <input type="submit" id="buscarpokemon" name="buscarpokemon" value="¿Quién es este Pokémon?">
     </form>
+
+    <h2 class="pokd">Pokemon disponibles</h2>
+    <div class="pokemonesDisponibles">
+        <?php
+        include("php/tablapokemon.php")
+        ?>
+    </div>
+
+        <!--<div class='tipoPoke'><p>Tipo/s</p> <img src='img/tipo_" . $poke["id_tipo_pokemon"] . ".'> <img src='img/" . $poke["id_tipo_pokemon2"] . "'></div>-->
+    </div>
 </main>
 
 <footer>

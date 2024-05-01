@@ -1,0 +1,67 @@
+h2{
+    margin: 2%;
+    font-family: "Poppins", sans-serif;
+    font-size: 25px;
+    color: black;
+    font-weight: bold;
+}
+
+.pokd{
+    text-align: center;
+    border-top: 1px solid #b45c64;
+    padding-top:2% ;
+}
+
+.subirpoke{
+    display: flex;
+    justify-content: center;
+}
+
+#subirPokemon{
+    margin: 0.5rem;
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;
+    border: 2px solid red;
+    font-family: "Poppins", sans-serif;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+}
+
+#subirPokemon:hover{
+    background-color: white;
+    color: red;
+    transition-duration: 0.5s;
+}
+
+.pokemonesDisponibles{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+}
+
+.acciones-admin {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.btn-accion {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    border: 2px solid red;
+    border-radius: 5px;
+    background-color: red;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-family: "Poppins", sans-serif;
+}
+
+.btn-accion:hover {
+    background-color: white;
+    color: red;
+    transition-duration: 0.5s;
+}

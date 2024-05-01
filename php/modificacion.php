@@ -133,12 +133,21 @@
             echo "<script> console.log('Conexión a db exitosa')</script>";
         }
 
-        $sql = "UPDATE pokemon 
+        if($tipo2_new != ""){
+            $sql = "UPDATE pokemon 
                 SET id_pokemon = '" . $id_new . "',
                  nombre = '" . $nombre_new .  "', 
                  id_tipo_pokemon1 = '" . $tipo1_new . "', 
                  id_tipo_pokemon2 = '" . $tipo2_new . "' 
                  WHERE id_bdd = " . $id_db ;
+        }else{
+            $sql = "UPDATE pokemon 
+                SET id_pokemon = '" . $id_new . "',
+                 nombre = '" . $nombre_new .  "', 
+                 id_tipo_pokemon1 = '" . $tipo1_new . "'
+                 WHERE id_bdd = " . $id_db ;
+        }
+
         if($conn->query($sql) === TRUE){
             $conn->close();
             echo "<script> console.log('Se actualizo la tabla de forma correcta')</script>";
