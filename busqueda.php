@@ -41,14 +41,12 @@
 
     $pokemonBuscado = isset($_GET['busqueda']) ? $_GET['busqueda'] : '';
 
-    $sql = "SELECT p.*, t1.descripcion AS tipo1, t2.descripcion AS tipo2 
-            FROM pokemon p 
-            LEFT JOIN tipo t1 ON p.id_tipo_pokemon1 = t1.id_tipo_pokemon
-            LEFT JOIN tipo t2 ON p.id_tipo_pokemon2 = t2.id_tipo_pokemon
-            WHERE p.nombre LIKE '%$pokemonBuscado%' 
-            OR t1.descripcion LIKE '%$pokemonBuscado%' 
-            OR t2.descripcion LIKE '%$pokemonBuscado%' 
-            OR p.id_pokemon = '$pokemonBuscado'";
+    $sql = "SELECT * 
+        FROM pokemon 
+        WHERE nombre = '$pokemonBuscado' 
+        OR id_pokemon = '$pokemonBuscado'
+        OR nombre IN (SELECT nombre FROM pokemon WHERE id_bdd = pokemon.id_tipo_pokemon1)
+        OR nombre IN (SELECT nombre FROM pokemon WHERE id_bdd = pokemon.id_tipo_pokemon2)";
 
     $resultado = $conn->query($sql);
 
@@ -88,6 +86,14 @@
             }
         }
     }
+
+
+    if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
+        echo '<form method="get" action="home.php">'; // Cambia "home.php" por la URL de tu página de inicio
+        echo '<button class="botonVolver" type="submit">Volver</button>';
+        echo '</form>';
+    }
+
 
     $conn->close();
     ?>
