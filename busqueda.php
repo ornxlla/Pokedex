@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -19,7 +16,13 @@ session_start();
 <body>
 
 <header>
-    <?php include('header.php') ?>
+    <?php
+    if(isset($_SESSION['usuario'])) {
+        include('headerUserLogueado.php');
+    } else {
+        include('header.php');
+    }
+    ?>
 </header>
 
 <main>
@@ -63,6 +66,18 @@ session_start();
             echo "<div class='imagenPokeBus'><img src='img/pokemones/" . $fila['imagen'] . "' alt='" . $fila['nombre'] . "'></div>";
             echo "<div class='nombrePokeBus'><p>" . $fila['nombre'] . "</p></div>";
             echo "<div class='numeroPokeBus'><p>#" . $fila['id_pokemon'] . "</p></div>";
+
+
+            echo "<div class='tipoPoke'>";
+            echo "<img src='img/tipo_" . $fila["tipo1"] . ".png' style='height: 15px; width: 100px; '>";
+            echo "</div>";
+
+            if (!empty($fila["tipo2"])) {
+                echo "<div class='tipoPoke'>";
+                echo "<img src='img/tipo_" . $fila["tipo2"] . ".png' style='height: 15px; width: 100px; '>";
+                echo "</div>";
+            }
+
             echo "</div>";
         }
     } else {
@@ -95,7 +110,7 @@ session_start();
 
 
     if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
-        echo '<form method="get" action="home.php">'; // Cambia "home.php" por la URL de tu página de inicio
+        echo '<form method="get" action="home.php">';
         echo '<button class="botonVolver" type="submit">Volver</button>';
         echo '</form>';
     }

@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+
+
 function consultarBD($usuario, $contrasenia)
 {
     $servername = "localhost";
@@ -49,5 +51,17 @@ if (isset($_POST["usuario"]) && isset($_POST["contrasenia"])) {
     header("location: index.php?error=2");
     exit();
 }
+
+
+
+
+// En login.php después de gestionar el inicio de sesión
+if (isset($_GET['logout'])) {
+    session_start();
+    session_destroy();
+    header('Location: index.php');
+    exit;
+}
+
 
 ?>

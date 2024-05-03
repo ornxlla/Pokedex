@@ -51,9 +51,15 @@ foreach ($pokemon as $poke) {
         echo "<div class='tabla'><div class='imagenPoke'> <img src='img/pokemones/" . $poke["imagen"] . "'><div class='nombrePoke'> <p>" . $poke["nombre"] . "</p></div><div class='numeroPoke'><p>#" . $poke["id_pokemon"] . "</p> 
     <img src='img/tipo_" . $tipodescrip["descripcion"] . ".png' style='height: 15px; width: 100px; '></div>";
 
-           // if ($poke["id_tipo_pokemon2"] != null) {
-              //  echo  " <img src='img/tipo_" . $tipodescrip["descripcion"] . ".png' style='height: 15px; width: 100px; '></div>";
-            //}
+            if (!empty ($poke["id_tipo_pokemon2"])) {
+                      foreach ($tipo as $segundoTipo) {
+                    if ($poke["id_tipo_pokemon2"] == $segundoTipo["id_tipo_pokemon"]) {
+                        echo "<div class='tipoPoke'>";
+                        echo "<img src='img/tipo_" . $segundoTipo["descripcion"] . ".png' style='height: 15px; width: 100px; '>";
+                        echo "</div>";
+                    }
+                }
+                }
 
         if (isset($_GET['admin']) && $_GET['admin'] == 'true') {
             echo '<input type="button" name="modificafPokemon" id="modificarPokemon" value="Modificar Pokemon" onclick="modificarPokemon(\'' . $poke["id_bdd"] . '\')"> </br>';

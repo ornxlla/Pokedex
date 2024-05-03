@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -5,9 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/home.css">
-    <link rel="stylesheet" href="css/tablapokemon.css">
-
+    <link rel="stylesheet" href="css/busqueda.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
@@ -19,41 +20,95 @@
 <body>
 
 <header>
-    <?php include('header.php') ?>
+    <?php
 
+        include('header.php');
+
+    ?>
 </header>
 
 <main>
-    <?php
-    if( isset($_GET["error"]) ){
-        switch ($_GET["error"]){
-            case 1:
-                echo "<div class='error-message'>Usuario y contraseña inválidos</div>";
-                break;
-            case 2:
-                echo "<div class='error-message'>Debe completar los datos</div>";
-                break;
-            case 3:
-                echo "<div class='error-message'>Error</div>";
-                break;
-        }
-    }
-    ?>
-
     <form action="busqueda.php" method="GET">
         <input type="text" name="busqueda" id="buscar" placeholder="Ingrese el nombre, tipo o número de Pokémon">
         <input type="submit" id="buscarpokemon" name="buscarpokemon" value="¿Quién es este Pokémon?">
     </form>
 
-    <h2 class="pokd">Pokemon disponibles</h2>
-    <div class="pokemonesDisponibles">
-        <?php
-        include("php/tablapokemon.php")
-        ?>
-    </div>
+    <?php
+    $host = "localhost";
+    $usuario = "root";
+    $contrasenia = "";
+    $base_datos = "pokemon";
 
-        <!--<div class='tipoPoke'><p>Tipo/s</p> <img src='img/tipo_" . $poke["id_tipo_pokemon"] . ".'> <img src='img/" . $poke["id_tipo_pokemon2"] . "'></div>-->
-    </div>
+    $conn = new mysqli($host, $usuario, $contrasenia, $base_datos);
+
+    if ($conn->connect_error) {
+        die("Error al conectar con la base de datos: " . $conn->connect_error);
+    }
+
+    // Obtener los tipos de Pokémon
+    $sql_tipos = "SELECT * FROM tipo";
+    $resultado_tipos = $conn->query($sql_tipos);
+
+    $tipos = array(); // Array para almacenar los tipos de Pokémon
+    if ($resultado_tipos->num_rows > 0) {
+        while ($fila_tipo = $resultado_tipos->fetch_assoc()) {
+            $tipos[] = $fila_tipo;
+        }
+    }
+
+    $pokemonBuscado = isset($_GET['busqueda']) ? $_GET['busqueda'] : '';
+
+    $sql = "SELECT p.*, t1.descripcion AS tipo1, t2.descripcion AS tipo2 
+            FROM pokemon p 
+            LEFT JOIN tipo t1 ON p.id_tipo_pokemon1 = t1.id_tipo_pokemon
+            LEFT JOIN tipo t2 ON p.id_tipo_pokemon2 = t2.id_tipo_pokemon
+            WHERE p.nombre LIKE '%$pokemonBuscado%' 
+            OR t1.descripcion LIKE '%$pokemonBuscado%' 
+            OR t2.descripcion LIKE '%$pokemonBuscado%' 
+            OR p.id_pokemon = '$pokemonBuscado'";
+
+    $resultado = $conn->query($sql);
+
+    if ($resultado->num_rows > 0) {
+        while ($fila = $resultado->fetch_assoc()) {
+            echo "<div class='tablaBus'>";
+            echo "<div class='imagenPokeBus'> <img src='img/pokemones/" . $fila["imagen"] . "'></div>";
+            echo "<div class='nombrePokeBus'> <p>" . $fila["nombre"] . "</p></div>";
+            echo "<div class='numeroPokeBus'><p>#" . $fila["id_pokemon"] . "</p></div>";
+
+
+            foreach ($tipos as $tipodescrip) {
+                if ($fila["id_tipo_pokemon1"] == $tipodescrip["id_tipo_pokemon"]) {
+                    echo "<div class='tipoPoke'>";
+                    echo "<img src='img/tipo_" . $tipodescrip["descripcion"] . ".png' style='height: 15px; width: 100px; '>";
+                    echo "</div>";
+                }
+            }
+
+            if (!empty($fila["id_tipo_pokemon2"])) {
+                foreach ($tipos as $tipodescrip) {
+                    if ($fila["id_tipo_pokemon2"] == $tipodescrip["id_tipo_pokemon"]) {
+                        echo "<div class='tipoPoke'>";
+                        echo "<img src='img/tipo_" . $tipodescrip["descripcion"] . ".png' style='height: 15px; width: 100px; '>";
+                        echo "</div>";
+                    }
+                }
+            }
+
+
+            echo "</div>";
+        }
+    } else {
+        echo "<div class='error-message'>No hay Pokémon disponibles</div>";
+    }
+
+    if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
+        echo '<form method="get" action="home.php">';
+        echo '<button class="botonVolver" type="submit">Volver</button>';
+        echo '</form>';
+    }
+    $conn->close();
+    ?>
 </main>
 
 <footer>
