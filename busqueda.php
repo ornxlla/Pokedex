@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -88,8 +91,13 @@
             }
         }
     }
-
+    if (!empty($_GET['busqueda'])) {
+        echo '<form method="get" action="home.php">'; // Cambia "home.php" por la URL de tu página de inicio
+        echo '<button class="botonVolver" type="submit">Volver</button>';
+        echo '</form>';
+    }
     $conn->close();
+
     ?>
 
 

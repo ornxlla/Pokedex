@@ -26,6 +26,9 @@ if ($conn->connect_error) {
 $sql1 = "SELECT * FROM pokemon";
 $result = $conn->query($sql1);
 $pokemon = array();
+$sql2 = "SELECT * FROM tipo";
+$result2 = $conn->query($sql2);
+
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
         $pokemon[] = $row;
@@ -34,14 +37,31 @@ if ($result->num_rows > 0) {
     echo "<script> console.log('No se pudo obtener los pokemon')</script>";
 }
 
-foreach ($pokemon as $poke) {
-    echo "<div class='tabla'><div class='imagenPoke'> <img src='img/pokemones/" . $poke["imagen"] . "'><div class='nombrePoke'> <p>" . $poke["nombre"] . "</p></div><div class='numeroPoke'><p>#" . $poke["id_pokemon"] . "</p></div>";
-
-    if(isset($_GET['admin']) && $_GET['admin'] == 'true'){
-        echo '<input type="button" name="modificafPokemon" id="modificarPokemon" value="Modificar Pokemon" onclick="modificarPokemon(\'' . $poke["id_bdd"] . '\')"> </br>';
-        echo '<input type="button" name="eliminarPokemon" id="eliminarPokemon" value="Eliminar Pokemon" onclick="eliminarPokemon(\'' . $poke["id_bdd"] . '\', \'' . $poke["nombre"] . '\')">';
+if ($result2->num_rows > 0) {
+    while($row = $result2->fetch_assoc()) {
+        $tipo[] = $row;
     }
-    echo "</div></div><br>" ;
+}else{
+    echo "<script> console.log('No se pudo obtener los pokemon')</script>";
+}
+
+foreach ($pokemon as $poke) {
+    foreach ($tipo as $tipodescrip) {
+        if ($poke["id_tipo_pokemon1"] == $tipodescrip["id_tipo_pokemon"]) {
+        echo "<div class='tabla'><div class='imagenPoke'> <img src='img/pokemones/" . $poke["imagen"] . "'><div class='nombrePoke'> <p>" . $poke["nombre"] . "</p></div><div class='numeroPoke'><p>#" . $poke["id_pokemon"] . "</p> 
+    <img src='img/tipo_" . $tipodescrip["descripcion"] . ".png' style='height: 15px; width: 100px; '></div>";
+
+           // if ($poke["id_tipo_pokemon2"] != null) {
+              //  echo  " <img src='img/tipo_" . $tipodescrip["descripcion"] . ".png' style='height: 15px; width: 100px; '></div>";
+            //}
+
+        if (isset($_GET['admin']) && $_GET['admin'] == 'true') {
+            echo '<input type="button" name="modificafPokemon" id="modificarPokemon" value="Modificar Pokemon" onclick="modificarPokemon(\'' . $poke["id_bdd"] . '\')"> </br>';
+            echo '<input type="button" name="eliminarPokemon" id="eliminarPokemon" value="Eliminar Pokemon" onclick="eliminarPokemon(\'' . $poke["id_bdd"] . '\', \'' . $poke["nombre"] . '\')">';
+        }
+        echo "</div></div><br>";
+    }
+}
 }
 
 //<form action='modificacion.php' method='GET'> <input type='submit' id='modificarpoke' name='modificarpoke' value='Modificar'></form>

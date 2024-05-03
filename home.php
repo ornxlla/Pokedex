@@ -78,6 +78,7 @@ session_start();
             <input type="submit" name="subirPokemon" id="subirPokemon" value="Subir Pokemon">
         </form>
     </div>
+
 </main>
 
 

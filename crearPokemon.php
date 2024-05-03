@@ -1,4 +1,6 @@
-
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -17,7 +19,30 @@
 <body>
 
 <header>
-    <?php include('header.php') ?>
+    <nav>
+        <div class="logo">
+            <img src="img/pokeball.png">
+        </div>
+
+        <div class="nombrePag">
+            <h1>Pokedex</h1>
+        </div>
+
+        <div class="user-info">
+            <?php
+            if(isset($_SESSION['usuario'])){
+                echo "<p class='usuarioBienvenido'>USUARIO:" . $_SESSION['usuario'] . "</p>";
+                echo "<div class='usuarioLog'>";
+                echo "<a href='editarPerfil.php'>Editar</a>";
+                echo "<a href='index.php'>Cerrar sesión</a>";
+                echo "</div>";
+            } else {
+                echo "<form action='login.php' method='post'>";
+
+            }
+            ?>
+        </div>
+    </nav>
 </header>
 
 <main>
@@ -35,12 +60,8 @@
                 break;
         }
     }
-
-    if(isset($_GET['admin']) && $_GET['admin'] == 'true'){
         require_once('php\alta.php');
-    }else{
-        echo "<div><img src='img/msg/acceso_denegado.png' alt='Acceso Denegado' width='960' height='540' </div>";
-    }
+
 
 ?>
 

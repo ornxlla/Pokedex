@@ -61,7 +61,7 @@
             $host = "localhost";
             $usuario = "root";
             $contrasenia = "";
-            $base_datos = "test";
+            $base_datos = "pokemon";
 
             $conn = new mysqli($host, $usuario, $contrasenia, $base_datos);
 
@@ -123,7 +123,7 @@
         $host = "localhost";
         $usuario = "root";
         $contrasenia = "";
-        $base_datos = "test";
+        $base_datos = "pokemon";
 
         $conn = new mysqli($host, $usuario, $contrasenia, $base_datos);
 
@@ -166,7 +166,7 @@ if(isset($_GET['id'])){
     $host = "localhost";
     $usuario = "root";
     $contrasenia = "";
-    $base_datos = "test";
+    $base_datos = "pokemon";
 
     $conn = new mysqli($host, $usuario, $contrasenia, $base_datos);
 
