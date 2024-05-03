@@ -1,3 +1,9 @@
+<?php
+session_start();
+
+$usuarioLogueado = isset($_SESSION['usuario']);
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -17,10 +23,10 @@
 
 <header>
     <?php
-    if(isset($_SESSION['usuario'])) {
-        include('headerUserLogueado.php');
+    if($usuarioLogueado) {
+        include_once ('headerUserLogueado.php');
     } else {
-        include('header.php');
+        include_once('header.php');
     }
     ?>
 </header>
@@ -67,7 +73,7 @@
             echo "<div class='nombrePokeBus'><p>" . $fila['nombre'] . "</p></div>";
             echo "<div class='numeroPokeBus'><p>#" . $fila['id_pokemon'] . "</p></div>";
 
-
+        
             echo "<div class='tipoPoke'>";
             echo "<img src='img/tipo_" . $fila["tipo1"] . ".png' style='height: 15px; width: 100px; '>";
             echo "</div>";

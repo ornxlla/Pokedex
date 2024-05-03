@@ -1,3 +1,8 @@
+<?php
+if (!isset($_SESSION)) {
+    session_start();
+}
+?>
 <header>
     <nav>
         <div class="logo">
@@ -14,7 +19,7 @@
                 echo "<p class='usuarioBienvenido'>USUARIO:" . $_SESSION['usuario'] . "</p>";
                 echo "<div class='usuarioLog'>";
                // echo "<a href='editarPerfil.php'>Editar</a>";
-                echo "<a href='index.php'>Cerrar sesión</a>";
+                echo "<a href='cerrarSesion.php'>Cerrar sesión</a>";
                 echo "</div>";
             } else {
                 echo "<form action='login.php' method='post'>";
