@@ -57,10 +57,15 @@ session_start();
     </div>
 
     <div class="subirpoke">
-        <form action="crearPokemon.php" method="GET">
-            <input type="submit" name="subirPokemon" id="subirPokemon" value="Subir Pokemon">
-        </form>
+        <?php
+        if(isset($_SESSION['usuario']) && isset($_GET['admin']) && $_GET['admin'] == 'true') {
+            echo "<form action='crearPokemon.php' method='GET'>";
+            echo "<input type='submit' name='subirPokemon' id='subirPokemon' value='Subir Pokemon'>";
+            echo "</form>";
+        }
+        ?>
     </div>
+
 
 </main>
 
