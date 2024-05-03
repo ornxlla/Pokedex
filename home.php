@@ -35,7 +35,7 @@ session_start();
             if(isset($_SESSION['usuario'])){
                 echo "<p class='usuarioBienvenido'>USUARIO:" . $_SESSION['usuario'] . "</p>";
                 echo "<div class='usuarioLog'>";
-                echo "<a href='editarPerfil.php'>Editar</a>";
+               // echo "<a href='editarPerfil.php'>Editar</a>";
                 echo "<a href='index.php'>Cerrar sesión</a>";
                 echo "</div>";
             } else {
