@@ -68,12 +68,12 @@ $usuarioLogueado = isset($_SESSION['usuario']);
     if ($resultado->num_rows > 0) {
 
         while ($fila = $resultado->fetch_assoc()) {
+            echo "<a href='vistaPokemon.php?id=" . $fila["id_pokemon"] . "'>";
             echo "<div class='tablaBus'>";
             echo "<div class='imagenPokeBus'><img src='img/pokemones/" . $fila['imagen'] . "' alt='" . $fila['nombre'] . "'></div>";
             echo "<div class='nombrePokeBus'><p>" . $fila['nombre'] . "</p></div>";
             echo "<div class='numeroPokeBus'><p>#" . $fila['id_pokemon'] . "</p></div>";
 
-        
             echo "<div class='tipoPoke'>";
             echo "<img src='img/tipo_" . $fila["tipo1"] . ".png' style='height: 15px; width: 100px; '>";
             echo "</div>";
@@ -84,7 +84,7 @@ $usuarioLogueado = isset($_SESSION['usuario']);
                 echo "</div>";
             }
 
-            echo "</div>";
+            echo "</a></div>";
         }
     } else {
 
@@ -101,11 +101,12 @@ $usuarioLogueado = isset($_SESSION['usuario']);
             if ($resultado_todos->num_rows > 0) {
 
                 while ($fila_todos = $resultado_todos->fetch_assoc()) {
+                    echo "<a href='vistaPokemon.php?id=" . $fila_todos["id_pokemon"] . "'>";
                     echo "<div class='tablaBus'>";
                     echo "<div class='imagenPokeBus'><img src='img/pokemones/" . $fila_todos['imagen'] . "' alt='" . $fila_todos['nombre'] . "'></div>";
                     echo "<div class='nombrePokeBus'><p>" . $fila_todos['nombre'] . "</p></div>";
                     echo "<div class='numeroPokeBus'><p>#" . $fila_todos['id_pokemon'] . "</p></div>";
-                    echo "</div>";
+                    echo "</div> </a>";
                 }
             } else {
 

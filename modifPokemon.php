@@ -6,6 +6,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/modificarPokemon.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -62,7 +63,9 @@ session_start();
         require_once('php\modificacion.php');
 
     ?>
-
+    <form method="get" action="home.php">
+        <button class="botonVolver" type="submit">Volver</button>
+    </form>
 </main>
 <footer>
     <?php include('footer.php') ?>

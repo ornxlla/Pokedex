@@ -1,9 +1,14 @@
+<?php
+session_start();
+$usuarioLogueado = isset($_SESSION['usuario']);
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/vistaPokemon.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
@@ -15,10 +20,10 @@
 <body>
 <header>
     <?php
-    if(isset($_SESSION['usuario'])) {
-        include('headerUserLogueado.php');
+    if($usuarioLogueado) {
+        include_once ('headerUserLogueado.php');
     } else {
-        include('header.php');
+        include_once('header.php');
     }
     ?>
 </header>
@@ -62,22 +67,34 @@
         if (!empty($data_old)) {
             foreach ($tiposPokemon as $tipo) {
                 if($tipo['id_tipo_pokemon'] == $data_old['id_tipo_pokemon1']){
+                    echo "<div class='mainVista'>";
+                    echo "<div class='acomodarVista'>";
                     echo "<h2>" . $data_old['nombre'] . "</h2>";
-                    echo "<img src='img/pokemones/" . $data_old['imagen'] . "'>";
-                    echo "<p>" .  $data_old_text . "</p>";
-                    echo "<img src='img/tipo_" . $tipo['descripcion'] . ".png'>";
+                    echo "<h3>#" . $data_old['id_pokemon'] . "</h3>";
+                    echo "<img src='img/pokemones/" . $data_old['imagen'] . "' class='imgPokemon'>";
+                    echo "</div>";
+                    echo "<div class='acomodarPartesVista'>";
+                    echo "<img src='img/tipo_" . $tipo['descripcion'] . ".png' class='imgTipo''>";
                     if (!empty ($data_old["id_tipo_pokemon2"])) {
                         foreach ($tiposPokemon as $segundoTipo) {
                             if ($data_old["id_tipo_pokemon2"] == $segundoTipo["id_tipo_pokemon"]) {
-                                echo "<img src='img/tipo_" . $segundoTipo["descripcion"] . ".png' style='height: 15px; width: 100px; '>";
+                                echo "<img src='img/tipo_" . $segundoTipo["descripcion"] . ".png' class='imgTipo''>";
                             }
                         }
                     }
+                    echo "<p>" .  $data_old_text . "</p>";
+
+                    echo "</div></div>";
                 }
             }
         } else {
             echo "<script> console.log('No se pudo obtener al pokemon deseado')</script>";
         }
+
+            echo '<form method="get" action="home.php">';
+            echo '<button class="botonVolver" type="submit">Volver</button>';
+            echo '</form>';
+
 
 
         $conn->close();

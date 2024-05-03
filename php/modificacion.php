@@ -238,13 +238,13 @@ if(isset($_GET['id'])){
         }
         echo "</select><br>";
         ?>
-        <label for="img_actual">Imagen actual: </label>
+        <label for="img_actual">Imagen actual: </label><br>
         <img <?php echo "src='" .  $data_old_img . "'"?> alt="Imagen actual de pokemon" width='200' height='200'><br>
         <label for="img_pokemon">Imagen nueva: </label>
         <input type="file" id="img_pokemon" name="img_pokemon"><br>
         <label for="desc_pokemon">Descripcion: </label><br>
         <textarea id="desc_pokemon" name="desc_pokemon" rows="10" cols="100" placeholder="Descripcion del pokemon..."><?php echo $data_old_text; ?></textarea><br>
-        <input type="submit" id="crearPokemon" name="modificarPokemon" value="Modificar">
+        <input type="submit" id="modifPokemon" name="modificarPokemon" value="Modificar">
     </form>
 </form>
 
