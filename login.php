@@ -13,14 +13,13 @@ function consultarBD($usuario, $contrasenia)
     }
 
     $sql = "SELECT * FROM " . $GLOBALS['tableUsers'] . " WHERE usuario = '" . $usuario . "' AND contrasenia = '" . $contrasenia . "'";
-    $result = mysqli_query($conn, $sql);
-
-    return $result;
+    return mysqli_query($conn, $sql);
 }
 
 if (isset($_POST["usuario"]) && isset($_POST["contrasenia"])) {
     $usuario = $_POST["usuario"];
     $contrasenia = $_POST["contrasenia"];
+
 
     if (empty($usuario) || empty($contrasenia)) {
         header("location: index.php?error=2");

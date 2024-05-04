@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-05-2024 a las 05:03:58
+-- Tiempo de generación: 04-05-2024 a las 17:05:44
 -- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
+-- Versión de PHP: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,16 +24,37 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `login`
+--
+
+CREATE TABLE `login` (
+  `id_usuario` int(11) NOT NULL,
+  `usuario` varchar(255) NOT NULL,
+  `contrasenia` varchar(255) NOT NULL,
+  `es_administrador` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `login`
+--
+
+INSERT INTO `login` (`id_usuario`, `usuario`, `contrasenia`, `es_administrador`) VALUES
+(1, 'pokeadmin', '1234', 1),
+(2, 'poke', '123', 0);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `pokemon`
 --
 
 CREATE TABLE `pokemon` (
-                           `id_bdd` int(11) NOT NULL,
-                           `id_pokemon` int(11) NOT NULL,
-                           `imagen` varchar(255) NOT NULL,
-                           `nombre` varchar(255) NOT NULL,
-                           `id_tipo_pokemon1` int(16) NOT NULL,
-                           `id_tipo_pokemon2` int(16) DEFAULT NULL
+  `id_bdd` int(11) NOT NULL,
+  `id_pokemon` int(11) NOT NULL,
+  `imagen` varchar(255) NOT NULL,
+  `nombre` varchar(255) NOT NULL,
+  `id_tipo_pokemon1` int(16) NOT NULL,
+  `id_tipo_pokemon2` int(16) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -41,37 +62,93 @@ CREATE TABLE `pokemon` (
 --
 
 INSERT INTO `pokemon` (`id_bdd`, `id_pokemon`, `imagen`, `nombre`, `id_tipo_pokemon1`, `id_tipo_pokemon2`) VALUES
-                                                                                                               (4, 1, '1714415092.png', 'Bulbasaur', 1, 7),
-                                                                                                               (5, 148, '1714420200.png', 'Dragonair', 14, 15),
-                                                                                                               (6, 1001, 'Squirtle.png', 'Squirtle', 3, NULL),
-                                                                                                               (7, 1002, 'Charmander.png', 'Charmander', 2, NULL),
-                                                                                                               (8, 1003, 'Articuno.png', 'Articuno', 14, NULL),
-                                                                                                               (9, 1004, 'Arbok.png', 'Arbok', 7, NULL),
-                                                                                                               (10, 1005, 'Butterfree.png', 'Butterfree', 16, 4),
-                                                                                                               (11, 1006, 'Dodrio.png', 'Dodrio', 4, NULL);
+(4, 1, '1714415092.png', 'Bulbasaur', 1, 7),
+(5, 148, '1714420200.png', 'Dragonair', 14, 15),
+(6, 7, 'Squirtle.png', 'Squirtle', 3, NULL),
+(7, 4, 'Charmander.png', 'Charmander', 2, NULL),
+(8, 144, 'Articuno.png', 'Articuno', 14, NULL),
+(9, 24, 'Arbok.png', 'Arbok', 7, NULL),
+(10, 12, 'Butterfree.png', 'Butterfree', 16, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tipo`
+--
+
+CREATE TABLE `tipo` (
+  `id_tipo_pokemon` int(11) NOT NULL,
+  `descripcion` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `tipo`
+--
+
+INSERT INTO `tipo` (`id_tipo_pokemon`, `descripcion`) VALUES
+(1, 'planta'),
+(2, 'fuego'),
+(3, 'agua'),
+(4, 'volador'),
+(5, 'insecto'),
+(6, 'normal'),
+(7, 'veneno'),
+(8, 'electrico'),
+(9, 'tierra'),
+(10, 'lucha'),
+(11, 'psiquico'),
+(12, 'roca'),
+(13, 'fantasma'),
+(14, 'hielo'),
+(15, 'dragon'),
+(16, 'bicho');
 
 --
 -- Índices para tablas volcadas
 --
 
 --
+-- Indices de la tabla `login`
+--
+ALTER TABLE `login`
+  ADD PRIMARY KEY (`id_usuario`);
+
+--
 -- Indices de la tabla `pokemon`
 --
 ALTER TABLE `pokemon`
-    ADD PRIMARY KEY (`id_bdd`),
-    ADD UNIQUE KEY `id_pokemon` (`id_pokemon`),
-    ADD KEY `fk_tipo_pokemon1` (`id_tipo_pokemon1`),
-    ADD KEY `fk_tipo_pokemon2` (`id_tipo_pokemon2`);
+  ADD PRIMARY KEY (`id_bdd`),
+  ADD UNIQUE KEY `id_pokemon` (`id_pokemon`),
+  ADD KEY `fk_tipo_pokemon1` (`id_tipo_pokemon1`),
+  ADD KEY `fk_tipo_pokemon2` (`id_tipo_pokemon2`);
+
+--
+-- Indices de la tabla `tipo`
+--
+ALTER TABLE `tipo`
+  ADD PRIMARY KEY (`id_tipo_pokemon`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
+-- AUTO_INCREMENT de la tabla `login`
+--
+ALTER TABLE `login`
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de la tabla `pokemon`
 --
 ALTER TABLE `pokemon`
-    MODIFY `id_bdd` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_bdd` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT de la tabla `tipo`
+--
+ALTER TABLE `tipo`
+  MODIFY `id_tipo_pokemon` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Restricciones para tablas volcadas
@@ -81,8 +158,8 @@ ALTER TABLE `pokemon`
 -- Filtros para la tabla `pokemon`
 --
 ALTER TABLE `pokemon`
-    ADD CONSTRAINT `fk_tipo_pokemon1` FOREIGN KEY (`id_tipo_pokemon1`) REFERENCES `tipo` (`id_tipo_pokemon`),
-    ADD CONSTRAINT `fk_tipo_pokemon2` FOREIGN KEY (`id_tipo_pokemon2`) REFERENCES `tipo` (`id_tipo_pokemon`);
+  ADD CONSTRAINT `fk_tipo_pokemon1` FOREIGN KEY (`id_tipo_pokemon1`) REFERENCES `tipo` (`id_tipo_pokemon`),
+  ADD CONSTRAINT `fk_tipo_pokemon2` FOREIGN KEY (`id_tipo_pokemon2`) REFERENCES `tipo` (`id_tipo_pokemon`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
