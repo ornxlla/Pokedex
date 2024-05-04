@@ -21,7 +21,11 @@
     font-size: 18px;
 }
 
-
+.tablaBus p{
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+}
 
 .tablaBus a {
     text-align: center;
