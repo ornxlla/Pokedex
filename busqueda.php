@@ -107,7 +107,7 @@ require_once "php/cargarGlobales.php";
                 }
             } else {
 
-                echo "<div class='error-message'>No hay Pokémon disponibles</div>";
+                echo "<div class='errorUser'>No hay Pokémon disponibles</div>";
             }
         }
     }

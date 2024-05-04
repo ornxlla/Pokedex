@@ -7,6 +7,5 @@
     <file url="file://$PROJECT_DIR$/php/modificacion.php" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/php/tablapokemon.php" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/pokemon.sql" dialect="MySQL" />
-    <file url="file://$PROJECT_DIR$/usuarios.sql" dialect="MySQL" />
   </component>
 </project>
