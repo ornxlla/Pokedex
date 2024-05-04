@@ -1,8 +1,9 @@
-main{
+main {
     display: flex;
     justify-content: center;
 }
-h2{
+
+h2 {
     margin: 2%;
     display: flex;
     justify-content: center;
@@ -11,12 +12,13 @@ h2{
     color: black;
     font-weight: bold;
 }
-label{
+
+label {
     font-family: "Poppins", sans-serif;
     font-size: 18px;
 }
 
-input{
+input {
     height: 30px;
     width: 100%;
     margin-bottom: 1%;
@@ -26,20 +28,20 @@ input{
     font-family: "Poppins", sans-serif;
 }
 
-textarea{
+textarea {
     margin-bottom: 1%;
     border-radius: 5px;
     border: 2px solid red;
 }
 
-select{
+select {
     margin-bottom: 1%;
     border-radius: 5px;
     border: 2px solid red;
     width: 100%;
 }
 
-#modifPokemon{
+#modifPokemon {
     height: 50px;
     border-radius: 5px;
     border: 2px solid red;
@@ -55,7 +57,7 @@ select{
     transition-duration: 0.5s;
 }
 
-.botonVolver{
+.botonVolver {
     margin: 0.5rem;
     height: 40px;
     width: 100%;
@@ -68,7 +70,36 @@ select{
     transition: background-color 0.3s;
 }
 
-.botonVolver:hover{
+.botonVolver:hover {
     background-color: #FF0000;
     color: white;
+}
+
+@media only screen and (max-width: 768px) {
+    h2 {
+        font-size: 20px;
+    }
+
+    input,
+    textarea,
+    select {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    h2 {
+        font-size: 18px;
+    }
+
+    input,
+    textarea,
+    select {
+        width: 90%;
+    }
+
+    #modifPokemon,
+    .botonVolver {
+        width: 90%;
+    }
 }
