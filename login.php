@@ -43,7 +43,11 @@ if (isset($_POST["usuario"]) && isset($_POST["contrasenia"])) {
         //    exit();
         //}
     } else {
+
+        $_SESSION["error_message"] = "Usuario o contraseña incorrecta !";
         header("location: index.php?error=1");
+
+
         exit();
     }
 } elseif (isset($_POST["usuario"]) || isset($_POST["contrasenia"])) {

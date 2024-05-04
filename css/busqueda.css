@@ -4,17 +4,32 @@
     margin: 2%;
     width: 150px;
     display: inline-block;
+
 }
 
 
 .imagenPokeBus img {
     width: 100%;
     height: auto;
+    text-decoration: none;
 }
+
+.nombrePokeBus{
+    text-decoration:none;
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+}
+
 
 
 .tablaBus p {
     text-align: center;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+
 }
 
 p {
