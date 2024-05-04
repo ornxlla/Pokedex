@@ -55,9 +55,13 @@ if ($result->num_rows > 0) {
     <label for="desc_pokemon">Descripción:</label><br>
     <textarea id="desc_pokemon" name="desc_pokemon" rows="10" cols="100"
               placeholder="Descripción del Pokémon..."></textarea><br>
-    <input type="submit" id="crearPokemon" name="crearPokemon" value="Crear">
+    <div class="botones">
+       <input type="submit" id="crearPokemon" name="crearPokemon" value="Crear">
+        <a href="home.php" class="botonVolver">Volver</a>
+    </div>
 
-    <a href="home.php" class="botonVolver">Volver</a>
+
+
 
 </form>
 
@@ -173,8 +177,7 @@ if (isset($_POST['crearPokemon'])) {
 
     .botonVolver {
         margin-bottom: 0.5rem;
-        height: 40px;
-        width: 15%;
+        width: 50%;
         border-radius: 5px;
         border: 2px solid red;
         font-family: "Poppins", sans-serif;
@@ -185,13 +188,25 @@ if (isset($_POST['crearPokemon'])) {
         text-decoration: none;
         display: inline-block;
         text-align: center;
-        line-height: 40px;
+        line-height: 50px;
         font-size: 0.8em;
+        margin-left: 0.5em;
+
     }
 
     .botonVolver:hover {
         background-color: #FF0000;
         color: white;
+    }
+
+    .botones{
+        display: flex;
+
+    }
+
+    #crearPokemon{
+        width: 50%;
+        margin-right: 0.5em;
     }
 </style>
 
