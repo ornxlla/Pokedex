@@ -33,9 +33,8 @@ session_start();
 <main>
     <?php
     if(isset($_SESSION['usuario'])){
-        if(isset($_GET['admin']) && $_GET['admin'] == 'true') {
+        if($_SESSION['admin'] == 1) {
             echo "<h2>Bienvenid@ " . $_SESSION['usuario'] . " (Administrador)</h2>";
-
         } else {
             echo "<h2>Bienvenid@ " . $_SESSION['usuario'] . "</h2>";
         }
@@ -58,7 +57,7 @@ session_start();
 
     <div class="subirpoke">
         <?php
-        if(isset($_SESSION['usuario']) && isset($_GET['admin']) && $_GET['admin'] == 'true') {
+        if(isset($_SESSION['usuario']) && $_SESSION['admin'] == 1) {
             echo "<form action='crearPokemon.php' method='GET'>";
             echo "<input type='submit' name='subirPokemon' id='subirPokemon' value='Subir Pokemon'>";
             echo "</form>";

@@ -3,6 +3,7 @@ session_start();
 
 $usuarioLogueado = isset($_SESSION['usuario']);
 
+require_once "php/cargarGlobales.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -40,12 +41,8 @@ $usuarioLogueado = isset($_SESSION['usuario']);
 
 
     <?php
-    $host = "localhost";
-    $usuario = "root";
-    $contraseña = "";
-    $base_datos = "pokemon";
 
-    $conn = new mysqli($host, $usuario, $contraseña, $base_datos);
+    $conn = new mysqli($GLOBALS['hostdb'], $GLOBALS['userdb'], $GLOBALS['passdb'], $GLOBALS['schemadb']);
 
     if ($conn->connect_error) {
         die("Error al conectar con la base de datos: " . $conn->connect_error);
@@ -55,9 +52,9 @@ $usuarioLogueado = isset($_SESSION['usuario']);
 
 
     $sql = "SELECT p.*, t1.descripcion AS tipo1, t2.descripcion AS tipo2 
-            FROM pokemon p 
-            LEFT JOIN tipo t1 ON p.id_tipo_pokemon1 = t1.id_tipo_pokemon
-            LEFT JOIN tipo t2 ON p.id_tipo_pokemon2 = t2.id_tipo_pokemon
+            FROM " . $GLOBALS['tablePokemon'] . " p 
+            LEFT JOIN " . $GLOBALS['tableTypes'] . " t1 ON p.id_tipo_pokemon1 = t1.id_tipo_pokemon
+            LEFT JOIN " . $GLOBALS['tableTypes'] . " t2 ON p.id_tipo_pokemon2 = t2.id_tipo_pokemon
             WHERE p.nombre LIKE '%$pokemonBuscado%' 
             OR t1.descripcion LIKE '%$pokemonBuscado%' 
             OR t2.descripcion LIKE '%$pokemonBuscado%' 

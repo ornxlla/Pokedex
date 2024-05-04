@@ -1,22 +1,18 @@
 <?php
 session_start();
 
-
+require_once "php/cargarGlobales.php";
 
 function consultarBD($usuario, $contrasenia)
 {
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $database = "usuarios";
 
-    $conn = mysqli_connect($servername, $username, $password, $database);
+    $conn = mysqli_connect($GLOBALS['hostdb'], $GLOBALS['userdb'], $GLOBALS['passdb'], $GLOBALS['schemadb']);
 
     if (!$conn) {
         die("Error al conectar con la base de datos: " . mysqli_connect_error());
     }
 
-    $sql = "SELECT * FROM login WHERE usuario = '" . $usuario . "' AND contrasenia = '" . $contrasenia . "'";
+    $sql = "SELECT * FROM " . $GLOBALS['tableUsers'] . " WHERE usuario = '" . $usuario . "' AND contrasenia = '" . $contrasenia . "'";
     $result = mysqli_query($conn, $sql);
 
     return $result;
@@ -35,14 +31,17 @@ if (isset($_POST["usuario"]) && isset($_POST["contrasenia"])) {
 
     if (mysqli_num_rows($result) == 1) {
         $row = mysqli_fetch_assoc($result);
-        $_SESSION["usuario"] = $usuario;
-        if ($row["es_administrador"] == 1) {
-            header("location: home.php?admin=true");
-            exit();
-        } else {
-            header("location: home.php");
-            exit();
-        }
+        $_SESSION["usuario"]    = $usuario;
+        $_SESSION["admin"]      = $row["es_administrador"];
+        header("location: home.php");
+        exit();
+        //if ($row["es_administrador"] == 1) {
+        //    header("location: home.php?admin=true");
+        //    exit();
+        //} else {
+        //    header("location: home.php");
+        //    exit();
+        //}
     } else {
         header("location: index.php?error=1");
         exit();

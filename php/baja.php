@@ -1,28 +1,19 @@
 <?php
-    if(isset($_GET['admin']) && $_GET['admin'] == 'true'){
-        if(isset($_GET['id'])){
-            if($_GET['id']>=1){
-                bajaPokemon($_GET['id']);
-            }else{
-                echo "<script>alert('Error: ID incorrecto.');</script>";
-            }
+
+    require_once "cargarGlobales.php";
+
+    if(isset($_GET['id'])){
+        if($_GET['id']>=1){
+            bajaPokemon($_GET['id']);
         }else{
-            echo "<script>alert('Error: ID no seteado.');</script>";
+            echo "<script>alert('Error: ID incorrecto.');</script>";
         }
     }else{
-        echo "<script>alert('Error: No tienes permisos para realizar esta accion.');</script>";
+        echo "<script>alert('Error: ID no seteado.');</script>";
     }
 
-
-    //header('location:../index.php');
-
     function bajaPokemon($id_db){
-        $host = "localhost";
-        $usuario = "root";
-        $contrasenia = "";
-        $base_datos = "pokemon";
-
-        $conn = new mysqli($host, $usuario, $contrasenia, $base_datos);
+        $conn = new mysqli($GLOBALS['hostdb'], $GLOBALS['userdb'], $GLOBALS['passdb'], $GLOBALS['schemadb']);
 
         if ($conn->connect_error) {
             die("Error al conectar con db: " . $conn->connect_error);
@@ -30,7 +21,7 @@
             echo "<script> console.log('Conexión a db exitosa')</script>";
         }
 
-        $sql = "DELETE FROM pokemon WHERE id_bdd = " . $id_db;
+        $sql = "DELETE FROM " . $GLOBALS['tablePokemon'] . " WHERE id_bdd = " . $id_db;
         if($conn->query($sql) === TRUE){
             echo "<script>alert('Se ha borrado el registro de forma correcta.')</script>";
         }else{

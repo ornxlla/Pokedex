@@ -1,5 +1,6 @@
 <?php
 session_start();
+$usuarioLogueado = isset($_SESSION['usuario']);
 ?>
 
 <!DOCTYPE html>
@@ -21,9 +22,11 @@ session_start();
 
 <header>
     <?php
-
-        include('header.php');
-
+    if($usuarioLogueado) {
+        include_once ('headerUserLogueado.php');
+    } else {
+        include_once('header.php');
+    }
     ?>
 </header>
 

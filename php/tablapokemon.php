@@ -12,21 +12,19 @@
 </script>
 
 <?php
-$host = "localhost";
-$usuario = "root";
-$contrasenia = "";
-$base_datos = "pokemon";
 
-$conn = new mysqli($host, $usuario, $contrasenia, $base_datos);
+require_once "php/cargarGlobales.php";
+
+$conn = new mysqli($GLOBALS['hostdb'], $GLOBALS['userdb'], $GLOBALS['passdb'], $GLOBALS['schemadb']);
 if ($conn->connect_error) {
     die("Error al conectar con db: " . $conn->connect_error . "");
 }else{
     echo "<script> console.log('Conexión a db exitosa')</script>";
 }
-$sql1 = "SELECT * FROM pokemon";
+$sql1 = "SELECT * FROM " . $GLOBALS['tablePokemon'];
 $result = $conn->query($sql1);
 $pokemon = array();
-$sql2 = "SELECT * FROM tipo";
+$sql2 = "SELECT * FROM " . $GLOBALS['tableTypes'];
 $result2 = $conn->query($sql2);
 
 if ($result->num_rows > 0) {
@@ -61,7 +59,7 @@ foreach ($pokemon as $poke) {
                 }
             }
 
-            if (isset($_GET['admin']) && $_GET['admin'] == 'true') {
+            if ($_SESSION['admin'] == 1) {
                 echo '<input type="button" name="modificafPokemon" id="modificarPokemon" value="Modificar Pokemon" onclick="modificarPokemon(\'' . $poke["id_bdd"] . '\')"> </br>';
                 echo '<input type="button" name="eliminarPokemon" id="eliminarPokemon" value="Eliminar Pokemon" onclick="eliminarPokemon(\'' . $poke["id_bdd"] . '\', \'' . $poke["nombre"] . '\')">';
             }
@@ -69,6 +67,3 @@ foreach ($pokemon as $poke) {
         }
     }
 }
-
-//<form action='modificacion.php' method='GET'> <input type='submit' id='modificarpoke' name='modificarpoke' value='Modificar'></form>
-//  <form action='baja.php' method='GET'> <input type='submit' id='bajarpoke' name='bajarpoke' value='Bajar'></form>

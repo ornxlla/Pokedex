@@ -1,19 +1,15 @@
 <?php
 $timestamp = time();
+require_once "php/cargarGlobales.php";
 
-$host = "localhost";
-$usuario = "root";
-$contrasenia = "";
-$base_datos = "pokemon";
-
-$conn = new mysqli($host, $usuario, $contrasenia, $base_datos);
+$conn = new mysqli($GLOBALS['hostdb'], $GLOBALS['userdb'], $GLOBALS['passdb'], $GLOBALS['schemadb']);
 
 if ($conn->connect_error) {
-    die("Error al conectar con db: " . $conn->connect_error . "");
+    die("Error al conectar con db: " . $conn->connect_error);
 }else{
     echo "<script> console.log('Conexión a db exitosa')</script>";
 }
-    $sql1 = "SELECT * FROM tipo";
+    $sql1 = "SELECT * FROM " . $GLOBALS['tableTypes'];
     $result = $conn->query($sql1);
 
     $tiposPokemon = array();
@@ -106,10 +102,10 @@ if ($conn->connect_error) {
         #PROCESO - Guardar datos de ID(No autoincremental), Nombre, Tipos y Nombre de imagen del Pokemon en la Base de Datos
         if($errorControl == 0){
             if(isset($_POST['tipo2_pokemon'])){
-                $sql2 = "INSERT INTO pokemon (id_pokemon, imagen, nombre, id_tipo_pokemon1, id_tipo_pokemon2)
+                $sql2 = "INSERT INTO " . $GLOBALS['tablePokemon'] . " (id_pokemon, imagen, nombre, id_tipo_pokemon1, id_tipo_pokemon2)
             VALUES ('" . $_POST['id_pokemon'] . "', '" . $img_pokemon_name  . "' , '". $_POST['name_pokemon'] ."' , '" . $_POST['tipo1_pokemon'] . "' , '" . $_POST['tipo2_pokemon'] . "')";
             }else{
-                $sql2 = "INSERT INTO pokemon (id_pokemon, imagen, nombre, id_tipo_pokemon1)
+                $sql2 = "INSERT INTO " . $GLOBALS['tablePokemon'] . " (id_pokemon, imagen, nombre, id_tipo_pokemon1)
             VALUES ('" . $_POST['id_pokemon'] . "', '" . $img_pokemon_name  . "' , '". $_POST['name_pokemon'] ."' , '" . $_POST['tipo1_pokemon'] . "')";
             }
 

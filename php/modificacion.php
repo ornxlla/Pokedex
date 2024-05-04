@@ -1,5 +1,7 @@
 <?php
 
+    require_once "php/cargarGlobales.php";
+
     function checkTodosCampos($id_old, $id_new, $nombre_old, $nombre_new, $tipo1_old, $tipo1_new, $tipo2_old, $tipo2_new){
         #Checkea si hubo cambios. Si todos los campos estan iguales, significa que no hubo cambios.
         echo "<script>
@@ -58,12 +60,7 @@
 
     function modificarImagen_db($id_db, $new_name){
         if($id_db){
-            $host = "localhost";
-            $usuario = "root";
-            $contrasenia = "";
-            $base_datos = "pokemon";
-
-            $conn = new mysqli($host, $usuario, $contrasenia, $base_datos);
+            $conn = new mysqli($GLOBALS['hostdb'], $GLOBALS['userdb'], $GLOBALS['passdb'], $GLOBALS['schemadb']);
 
             if ($conn->connect_error) {
                 die("Error al conectar con db: " . $conn->connect_error);
@@ -71,7 +68,7 @@
                 echo "<script> console.log('Conexión a db exitosa')</script>";
             }
 
-            $sql = "UPDATE pokemon SET imagen = '" . $new_name . "' WHERE id_bdd = " . $id_db;
+            $sql = "UPDATE " . $GLOBALS['tablePokemon'] . " SET imagen = '" . $new_name . "' WHERE id_bdd = " . $id_db;
             if($conn->query($sql) === TRUE){
                 $conn->close();
                 echo "<script> console.log('Se actualizo la tabla de forma correcta! (Campo Imagen)')</script>";
@@ -120,12 +117,7 @@
     }
 
     function modificarDB($id_db ,  $id_new, $nombre_new, $tipo1_new, $tipo2_new){
-        $host = "localhost";
-        $usuario = "root";
-        $contrasenia = "";
-        $base_datos = "pokemon";
-
-        $conn = new mysqli($host, $usuario, $contrasenia, $base_datos);
+        $conn = new mysqli($GLOBALS['hostdb'], $GLOBALS['userdb'], $GLOBALS['passdb'], $GLOBALS['schemadb']);
 
         if ($conn->connect_error) {
             die("Error al conectar con db: " . $conn->connect_error);
@@ -134,18 +126,18 @@
         }
 
         if($tipo2_new != ""){
-            $sql = "UPDATE pokemon 
-                SET id_pokemon = '" . $id_new . "',
-                 nombre = '" . $nombre_new .  "', 
-                 id_tipo_pokemon1 = '" . $tipo1_new . "', 
-                 id_tipo_pokemon2 = '" . $tipo2_new . "' 
-                 WHERE id_bdd = " . $id_db ;
+            $sql = "UPDATE " . $GLOBALS['tablePokemon'] .
+                   " SET id_pokemon = '"    . $id_new .
+                 "', nombre = '"            . $nombre_new .
+                 "', id_tipo_pokemon1 = '"  . $tipo1_new .
+                 "', id_tipo_pokemon2 = '"  . $tipo2_new .
+                  "' WHERE id_bdd = "       . $id_db ;
         }else{
-            $sql = "UPDATE pokemon 
-                SET id_pokemon = '" . $id_new . "',
-                 nombre = '" . $nombre_new .  "', 
-                 id_tipo_pokemon1 = '" . $tipo1_new . "'
-                 WHERE id_bdd = " . $id_db ;
+            $sql = "UPDATE ". $GLOBALS['tablePokemon'] .
+                    " SET id_pokemon = '"       . $id_new .
+                    "', nombre = '"             . $nombre_new .
+                    "', id_tipo_pokemon1 = '"   . $tipo1_new .
+                    "' WHERE id_bdd = "         . $id_db ;
         }
 
         if($conn->query($sql) === TRUE){
@@ -163,12 +155,7 @@ if(isset($_GET['id'])){
     #PROCESS - Buscar datos del ID de db que se desea modificar.
     $GLOBALS['timestamp'] = time();
 
-    $host = "localhost";
-    $usuario = "root";
-    $contrasenia = "";
-    $base_datos = "pokemon";
-
-    $conn = new mysqli($host, $usuario, $contrasenia, $base_datos);
+    $conn = new mysqli($GLOBALS['hostdb'], $GLOBALS['userdb'], $GLOBALS['passdb'], $GLOBALS['schemadb']);
 
     if ($conn->connect_error) {
         die("Error al conectar con db: " . $conn->connect_error);
@@ -176,7 +163,7 @@ if(isset($_GET['id'])){
         echo "<script> console.log('Conexión a db exitosa')</script>";
     }
 
-    $sql1 = "SELECT * FROM pokemon WHERE id_bdd = '" . $_GET['id'] . "'";
+    $sql1 = "SELECT * FROM " . $GLOBALS['tablePokemon'] . " WHERE id_bdd = '" . $_GET['id'] . "'";
     $result1 = $conn->query($sql1);
     $data_old = $result1->fetch_assoc();
 

@@ -1,6 +1,7 @@
 <?php
 session_start();
 $usuarioLogueado = isset($_SESSION['usuario']);
+require_once "php/cargarGlobales.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -31,14 +32,7 @@ $usuarioLogueado = isset($_SESSION['usuario']);
     <?php
 
     if(isset($_GET['id'])){
-        $GLOBALS['timestamp'] = time();
-
-        $host = "localhost";
-        $usuario = "root";
-        $contrasenia = "";
-        $base_datos = "pokemon";
-
-        $conn = new mysqli($host, $usuario, $contrasenia, $base_datos);
+        $conn = new mysqli($GLOBALS['hostdb'], $GLOBALS['userdb'], $GLOBALS['passdb'], $GLOBALS['schemadb']);
 
         if ($conn->connect_error) {
             die("Error al conectar con db: " . $conn->connect_error);
@@ -46,14 +40,14 @@ $usuarioLogueado = isset($_SESSION['usuario']);
             echo "<script> console.log('Conexión a db exitosa')</script>";
         }
 
-        $sql1 = "SELECT * FROM pokemon WHERE id_pokemon = '" . $_GET['id'] . "'";
+        $sql1 = "SELECT * FROM " . $GLOBALS['tablePokemon'] . " WHERE id_pokemon = '" . $_GET['id'] . "'";
         $result1 = $conn->query($sql1);
         $data_old = $result1->fetch_assoc();
         $pokemon = array();
         $data_old_archivo = explode( '.' ,$data_old['imagen']);
         $data_old_text = file_get_contents('./txt/' . $data_old_archivo[0] . '.txt');
 
-        $sql2 = "SELECT * FROM tipo";
+        $sql2 = "SELECT * FROM " . $GLOBALS['tableTypes'];
         $result2 = $conn->query($sql2);
 
         $tiposPokemon = array();
@@ -91,11 +85,9 @@ $usuarioLogueado = isset($_SESSION['usuario']);
             echo "<script> console.log('No se pudo obtener al pokemon deseado')</script>";
         }
 
-            echo '<form method="get" action="home.php">';
-            echo '<button class="botonVolver" type="submit">Volver</button>';
-            echo '</form>';
-
-
+        echo '<form method="get" action="home.php">';
+        echo '<button class="botonVolver" type="submit">Volver</button>';
+        echo '</form>';
 
         $conn->close();
     }
