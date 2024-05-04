@@ -52,13 +52,13 @@ require_once "php/cargarGlobales.php";
 
 
     $sql = "SELECT p.*, t1.descripcion AS tipo1, t2.descripcion AS tipo2 
-            FROM " . $GLOBALS['tablePokemon'] . " p 
-            LEFT JOIN " . $GLOBALS['tableTypes'] . " t1 ON p.id_tipo_pokemon1 = t1.id_tipo_pokemon
-            LEFT JOIN " . $GLOBALS['tableTypes'] . " t2 ON p.id_tipo_pokemon2 = t2.id_tipo_pokemon
-            WHERE p.nombre LIKE '%$pokemonBuscado%' 
-            OR t1.descripcion LIKE '%$pokemonBuscado%' 
-            OR t2.descripcion LIKE '%$pokemonBuscado%' 
-            OR p.id_pokemon = '$pokemonBuscado'";
+        FROM " . $GLOBALS['tablePokemon'] . " p 
+        LEFT JOIN " . $GLOBALS['tableTypes'] . " t1 ON p.id_tipo_pokemon1 = t1.id_tipo_pokemon
+        LEFT JOIN " . $GLOBALS['tableTypes'] . " t2 ON p.id_tipo_pokemon2 = t2.id_tipo_pokemon
+        WHERE p.nombre LIKE '%$pokemonBuscado%' 
+        OR t1.descripcion LIKE '%$pokemonBuscado%' 
+        OR t2.descripcion LIKE '%$pokemonBuscado%' 
+        OR p.id_pokemon = '$pokemonBuscado'";
 
     $resultado = $conn->query($sql);
 
@@ -92,23 +92,43 @@ require_once "php/cargarGlobales.php";
             echo "<div class='error-message'>Pokemon no encontrado</div>";
 
             //muestra todos los disponibles
-            $sql_todos = "SELECT * FROM pokemon";
+            $sql_todos = "SELECT p.*, t1.descripcion AS tipo1, t2.descripcion AS tipo2 
+                  FROM " . $GLOBALS['tablePokemon'] . " p 
+                  LEFT JOIN " . $GLOBALS['tableTypes'] . " t1 ON p.id_tipo_pokemon1 = t1.id_tipo_pokemon
+                  LEFT JOIN " . $GLOBALS['tableTypes'] . " t2 ON p.id_tipo_pokemon2 = t2.id_tipo_pokemon";
             $resultado_todos = $conn->query($sql_todos);
 
             if ($resultado_todos->num_rows > 0) {
-
                 while ($fila_todos = $resultado_todos->fetch_assoc()) {
                     echo "<a href='vistaPokemon.php?id=" . $fila_todos["id_pokemon"] . "'>";
                     echo "<div class='tablaBus'>";
-                    echo "<div class='imagenPokeBus'><img src='img/pokemones/" . $fila_todos['imagen'] . "' alt='" . $fila_todos['nombre'] . "'></div>";
-                    echo "<div class='nombrePokeBus'><p>" . $fila_todos['nombre'] . "</p></div>";
-                    echo "<div class='numeroPokeBus'><p>#" . $fila_todos['id_pokemon'] . "</p></div>";
-                    echo "</div> </a>";
+                    echo "<div class='imagenPokeBus'> <img src='img/pokemones/" . $fila_todos["imagen"] . "'></div>";
+                    echo "<div class='nombrePokeBus'> <p>" . $fila_todos["nombre"] . "</p></div>";
+                    echo "<div class='numeroPokeBus'><p>#" . $fila_todos["id_pokemon"] . "</p></div>";
+
+
+                    if (!empty($fila_todos["tipo1"])) {
+                        echo "<div class='tipoPoke'>";
+                        echo "<img src='img/tipo_" . $fila_todos["tipo1"] . ".png' style='height: 15px; width: 100px; '>";
+                        echo "</div>";
+                    }
+
+
+                    if (!empty($fila_todos["tipo2"])) {
+                        echo "<div class='tipoPoke'>";
+                        echo "<img src='img/tipo_" . $fila_todos["tipo2"] . ".png' style='height: 15px; width: 100px; '>";
+                        echo "</div>";
+                    }
+
+                    echo "</div></a>";
                 }
             } else {
 
                 echo "<div class='errorUser'>No hay Pokémon disponibles</div>";
+
+
             }
+
         }
     }
 
