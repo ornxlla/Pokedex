@@ -81,6 +81,7 @@ $usuarioLogueado = isset($_SESSION['usuario']);
 
     if ($resultado->num_rows > 0) {
         while ($fila = $resultado->fetch_assoc()) {
+            echo "<a href='vistaPokemon.php?id=" . $fila["id_pokemon"] . "'>";
             echo "<div class='tablaBus'>";
             echo "<div class='imagenPokeBus'> <img src='img/pokemones/" . $fila["imagen"] . "'></div>";
             echo "<div class='nombrePokeBus'> <p>" . $fila["nombre"] . "</p></div>";
@@ -106,7 +107,7 @@ $usuarioLogueado = isset($_SESSION['usuario']);
             }
 
 
-            echo "</div>";
+            echo "</div></a>";
         }
     } else {
         echo "<div class='error-message'>No hay Pokémon disponibles</div>";
