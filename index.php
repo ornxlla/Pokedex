@@ -1,13 +1,7 @@
 <?php
 session_start();
 if (isset($_GET['error']) && $_GET['error'] == 1 && isset($_SESSION["error_message"])) {
-    echo "<h1 style=\"margin: 1rem; height: 32px; width: 67%; border-radius: 5px; 
-    border: 2px solid red; background-color: #FFEFEF;
-    text-align: center; font-family: 'Pixelify Sans', sans-serif;
-    display: flex;
-    display: grid;
-    align-items: center;
-    color: #e22424; font-size: 1em;\">" . $_SESSION["error_message"] . "</h1>";
+    echo "<h1 class=\"error-message\">" . $_SESSION["error_message"] . "</h1>";
     unset($_SESSION["error_message"]);
 }
 $usuarioLogueado = isset($_SESSION['usuario']);
