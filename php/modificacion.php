@@ -116,7 +116,7 @@
         fclose($archivo);
     }
 
-    function modificarDB($id_db ,  $id_new, $nombre_new, $tipo1_new, $tipo2_new){
+    function modificarDB($id_db ,  $id_new, $nombre_new, $tipo1_new, $tipo2_new, $tipo2_old){
         $conn = new mysqli($GLOBALS['hostdb'], $GLOBALS['userdb'], $GLOBALS['passdb'], $GLOBALS['schemadb']);
 
         if ($conn->connect_error) {
@@ -127,17 +127,27 @@
 
         if($tipo2_new != ""){
             $sql = "UPDATE " . $GLOBALS['tablePokemon'] .
-                   " SET id_pokemon = '"    . $id_new .
-                 "', nombre = '"            . $nombre_new .
-                 "', id_tipo_pokemon1 = '"  . $tipo1_new .
-                 "', id_tipo_pokemon2 = '"  . $tipo2_new .
-                  "' WHERE id_bdd = "       . $id_db ;
+                " SET id_pokemon = '"    . $id_new .
+                "', nombre = '"            . $nombre_new .
+                "', id_tipo_pokemon1 = '"  . $tipo1_new .
+                "', id_tipo_pokemon2 = '"  . $tipo2_new .
+                "' WHERE id_bdd = "       . $id_db ;
         }else{
-            $sql = "UPDATE ". $GLOBALS['tablePokemon'] .
+            if($tipo2_old == ""){
+                $sql = "UPDATE ". $GLOBALS['tablePokemon'] .
                     " SET id_pokemon = '"       . $id_new .
                     "', nombre = '"             . $nombre_new .
                     "', id_tipo_pokemon1 = '"   . $tipo1_new .
                     "' WHERE id_bdd = "         . $id_db ;
+            }else{
+                $sql = "UPDATE " . $GLOBALS['tablePokemon'] .
+                    " SET id_pokemon = '"       . $id_new .
+                    "', nombre = '"             . $nombre_new .
+                    "', id_tipo_pokemon1 = '"   . $tipo1_new .
+                    "', id_tipo_pokemon2 = NULL
+                        WHERE id_bdd = "        . $id_db ;
+            }
+
         }
 
         if($conn->query($sql) === TRUE){
@@ -291,7 +301,7 @@ if(isset($_POST['modificarPokemon'])){
                   </script>";
             break;
         case 3:     # Modificar solamente la db
-            modificarDB($_GET['id'] , $_POST['id_pokemon'] , $_POST['name_pokemon'] , $_POST['tipo1_pokemon'] , $_POST['tipo2_pokemon'] );
+            modificarDB($_GET['id'] , $_POST['id_pokemon'] , $_POST['name_pokemon'] , $_POST['tipo1_pokemon'] , $_POST['tipo2_pokemon'] , $data_old["id_tipo_pokemon2"] );
             echo "<script>
                     alert('¡Se ha modificado los datos del Pokemon!');
                     window.location.href='./modifPokemon.php?id=" . $_GET['id'] . "';
@@ -299,7 +309,7 @@ if(isset($_POST['modificarPokemon'])){
             break;
         case 4:     # Modificar db + archivo
             modificarTexto();
-            modificarDB($_GET['id'] , $_POST['id_pokemon'] , $_POST['name_pokemon'] , $_POST['tipo1_pokemon'] , $_POST['tipo2_pokemon'] );
+            modificarDB($_GET['id'] , $_POST['id_pokemon'] , $_POST['name_pokemon'] , $_POST['tipo1_pokemon'] , $_POST['tipo2_pokemon'] , $data_old["id_tipo_pokemon2"]);
             echo "<script>
                     alert('¡Se ha modificado los datos del Pokemon!');
                     window.location.href='./modifPokemon.php?id=" . $_GET['id'] . "';
@@ -308,7 +318,7 @@ if(isset($_POST['modificarPokemon'])){
         case 5:     # Modificar all
             modificarImagen();
             modificarTexto();
-            modificarDB($_GET['id'] , $_POST['id_pokemon'] , $_POST['name_pokemon'] , $_POST['tipo1_pokemon'] , $_POST['tipo2_pokemon'] );
+            modificarDB($_GET['id'] , $_POST['id_pokemon'] , $_POST['name_pokemon'] , $_POST['tipo1_pokemon'] , $_POST['tipo2_pokemon'] , $data_old["id_tipo_pokemon2"] );
             echo "<script>
                     alert('¡Se ha modificado los datos del Pokemon!');
                     window.location.href='./modifPokemon.php?id=" . $_GET['id'] . "';

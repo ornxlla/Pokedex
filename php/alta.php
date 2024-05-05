@@ -113,12 +113,12 @@ if (isset($_POST['crearPokemon'])) {
     }
     #PROCESO - Guardar datos de ID(No autoincremental), Nombre, Tipos y Nombre de imagen del Pokémon en la Base de Datos
     if ($errorControl == 0) {
-        if (isset($_POST['tipo2_pokemon'])) {
+        if ($_POST['tipo2_pokemon'] != '') {
             $sql2 = "INSERT INTO " . $GLOBALS['tablePokemon'] . " (id_pokemon, imagen, nombre, id_tipo_pokemon1, id_tipo_pokemon2)
             VALUES ('" . $_POST['id_pokemon'] . "', '" . $img_pokemon_name . "' , '" . $_POST['name_pokemon'] . "' , '" . $_POST['tipo1_pokemon'] . "' , '" . $_POST['tipo2_pokemon'] . "')";
         } else {
-            $sql2 = "INSERT INTO " . $GLOBALS['tablePokemon'] . " (id_pokemon, imagen, nombre, id_tipo_pokemon1)
-            VALUES ('" . $_POST['id_pokemon'] . "', '" . $img_pokemon_name . "' , '" . $_POST['name_pokemon'] . "' , '" . $_POST['tipo1_pokemon'] . "')";
+            $sql2 = "INSERT INTO " . $GLOBALS['tablePokemon'] . " (id_pokemon, imagen, nombre, id_tipo_pokemon1 , id_tipo_pokemon2)
+            VALUES ('" . $_POST['id_pokemon'] . "', '" . $img_pokemon_name . "' , '" . $_POST['name_pokemon'] . "' , '" . $_POST['tipo1_pokemon'] . "' , NULL )";
         }
 
         if ($conn->query($sql2) === TRUE) {
