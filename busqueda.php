@@ -1,8 +1,6 @@
 <?php
 session_start();
-
 $usuarioLogueado = isset($_SESSION['usuario']);
-
 require_once "php/cargarGlobales.php";
 ?>
 <!DOCTYPE html>

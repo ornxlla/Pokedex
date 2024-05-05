@@ -1,7 +1,6 @@
 <?php
 session_start();
 $usuarioLogueado = isset($_SESSION['usuario']);
-$checkAdmin = $_SESSION['admin'];
 ?>
 <!DOCTYPE html>
 <html lang="es">

@@ -34,28 +34,16 @@ if (isset($_POST["usuario"]) && isset($_POST["contrasenia"])) {
         $_SESSION["admin"]      = $row["es_administrador"];
         header("location: home.php");
         exit();
-        //if ($row["es_administrador"] == 1) {
-        //    header("location: home.php?admin=true");
-        //    exit();
-        //} else {
-        //    header("location: home.php");
-        //    exit();
-        //}
     } else {
 
         $_SESSION["error_message"] = "Usuario o contraseña incorrecta !";
         header("location: index.php?error=1");
-
-
         exit();
     }
 } elseif (isset($_POST["usuario"]) || isset($_POST["contrasenia"])) {
     header("location: index.php?error=2");
     exit();
 }
-
-
-
 
 // En login.php después de gestionar el inicio de sesión
 if (isset($_GET['logout'])) {
@@ -64,6 +52,4 @@ if (isset($_GET['logout'])) {
     header('Location: index.php');
     exit;
 }
-
-
 ?>
