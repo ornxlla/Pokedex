@@ -9,7 +9,7 @@
         </div>
 
         <div class="formularioIngreso">
-            <form action="login.php" method="post">
+            <form action="php/login.php" method="post">
                 <input type="text" id="usuario" name="usuario" placeholder="Usuario">
                 <input type="password" id="contrasenia" name="contrasenia" placeholder="Contraseña">
                 <input type="submit" id="ingreso" name="ingreso" value="Ingresar">

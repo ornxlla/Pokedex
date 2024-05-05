@@ -19,10 +19,10 @@ if (!isset($_SESSION)) {
                 echo "<p class='usuarioBienvenido'>USUARIO:" . $_SESSION['usuario'] . "</p>";
                 echo "<div class='usuarioLog'>";
                // echo "<a href='editarPerfil.php'>Editar</a>";
-                echo "<a href='cerrarSesion.php'>Cerrar sesión</a>";
+                echo "<a href='php/cerrarSesion.php'>Cerrar sesión</a>";
                 echo "</div>";
             } else {
-                echo "<form action='login.php' method='post'>";
+                echo "<form action='./login.php' method='post'>";
 
             }
             ?>

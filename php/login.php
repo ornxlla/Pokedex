@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once "php/cargarGlobales.php";
+require_once "cargarGlobales.php";
 
 function consultarBD($usuario, $contrasenia)
 {
@@ -22,7 +22,7 @@ if (isset($_POST["usuario"]) && isset($_POST["contrasenia"])) {
 
 
     if (empty($usuario) || empty($contrasenia)) {
-        header("location: index.php?error=2");
+        header("location: ./index.php?error=2");
         exit();
     }
 
@@ -32,16 +32,16 @@ if (isset($_POST["usuario"]) && isset($_POST["contrasenia"])) {
         $row = mysqli_fetch_assoc($result);
         $_SESSION["usuario"]    = $usuario;
         $_SESSION["admin"]      = $row["es_administrador"];
-        header("location: home.php");
+        header("location: ../home.php");
         exit();
     } else {
 
         $_SESSION["error_message"] = "Usuario o contraseña incorrecta !";
-        header("location: index.php?error=1");
+        header("location: ../index.php?error=1");
         exit();
     }
 } elseif (isset($_POST["usuario"]) || isset($_POST["contrasenia"])) {
-    header("location: index.php?error=2");
+    header("location: ../index.php?error=2");
     exit();
 }
 
@@ -49,7 +49,7 @@ if (isset($_POST["usuario"]) && isset($_POST["contrasenia"])) {
 if (isset($_GET['logout'])) {
     session_start();
     session_destroy();
-    header('Location: index.php');
+    header('Location: ../index.php');
     exit;
 }
 ?>
