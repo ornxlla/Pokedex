@@ -83,7 +83,7 @@ $usuarioLogueado = isset($_SESSION['usuario']);
     $resultado = $conn->query($sql);
 
     if ($resultado->num_rows > 0) {
-        echo "<div class='pokemon-container'>";
+        echo "<div class='pokemon-container'><div/>";
         while ($fila = $resultado->fetch_assoc()) {
             echo "<a href='vistaPokemon.php?id=" . $fila["id_pokemon"] . "'>";
             echo "<div class='tablaBus'>";

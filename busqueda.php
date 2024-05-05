@@ -92,6 +92,7 @@ require_once "php/cargarGlobales.php";
                 echo "<div class='error-message'>Pokemon no encontrado</div>";
 
                 //muestra todos los disponibles
+
                 $sql_todos = "SELECT p.*, t1.descripcion AS tipo1, t2.descripcion AS tipo2 
                   FROM " . $GLOBALS['tablePokemon'] . " p 
                   LEFT JOIN " . $GLOBALS['tableTypes'] . " t1 ON p.id_tipo_pokemon1 = t1.id_tipo_pokemon

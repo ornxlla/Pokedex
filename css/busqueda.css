@@ -43,7 +43,7 @@ p {
 .botonVolver{
     margin: 0.5rem;
     height: 40px;
-    width: 15%;
+    width:auto;
     border-radius: 5px;
     border: 2px solid red;
     font-family: "Poppins", sans-serif;
