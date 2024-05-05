@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-05-2024 a las 21:45:44
--- Versión del servidor: 10.4.27-MariaDB
--- Versión de PHP: 8.2.0
+-- Tiempo de generación: 06-05-2024 a las 01:21:58
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,27 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `pokemon`
 --
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `login`
---
-
-CREATE TABLE `login` (
-  `id_usuario` int(11) NOT NULL,
-  `usuario` varchar(255) NOT NULL,
-  `contrasenia` varchar(255) NOT NULL,
-  `es_administrador` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `login`
---
-
-INSERT INTO `login` (`id_usuario`, `usuario`, `contrasenia`, `es_administrador`) VALUES
-(1, 'pokeadmin', '1234', 1),
-(2, 'poke', '123', 0);
 
 -- --------------------------------------------------------
 
@@ -73,50 +52,50 @@ INSERT INTO `pokemon` (`id_bdd`, `id_pokemon`, `imagen`, `nombre`, `id_tipo_poke
 (13, 2, '1714863557.png', 'Ivysaur', 1, 7),
 (14, 3, '1714863769.png', 'Venusaur', 1, 7),
 (22, 30, '1714864163.png', 'Nidorina', 7, 1),
-(23, 32, '1714864259.png', 'Nidoran', 7, 7),
+(23, 32, '1714864259.png', 'Nidoran', 7, NULL),
 (24, 6, '1714864361.png', 'Charizard', 2, 4),
 (25, 18, '1714864441.png', 'Pidgeot', 6, 4),
 (26, 84, '1714864648.png', 'Doduo', 6, 4),
 (27, 87, '1714864717.png', 'Dewgong', 3, 14),
-(28, 81, '1714864813.png', 'Magnemite', 8, 8),
-(29, 78, '1714864879.png', 'Rapidash', 2, 2),
-(30, 77, '1714864953.png', 'Ponyta', 2, 2),
+(28, 81, '1714864813.png', 'Magnemite', 8, NULL),
+(29, 78, '1714864879.png', 'Rapidash', 2, NULL),
+(30, 77, '1714864953.png', 'Ponyta', 2, NULL),
 (31, 76, '1714865027.png', 'Golem', 12, 9),
 (32, 73, '1714865084.png', 'Tentacruel', 7, 3),
-(33, 88, '1714870832.png', 'Grimer', 7, 7),
 (37, 80, '1714871196.png', 'Slowbro', 3, 11),
-(38, 90, '1714871350.png', 'Shellder', 3, 3),
-(39, 66, '1714871412.png', 'Machop', 10, 10),
-(40, 56, '1714871514.png', 'Mankey', 10, 10),
-(41, 64, '1714876280.png', 'Kadabra', 11, 11),
+(38, 90, '1714871350.png', 'Shellder', 3, NULL),
+(39, 66, '1714871412.png', 'Machop', 10, NULL),
+(40, 56, '1714871514.png', 'Mankey', 10, NULL),
+(41, 64, '1714876280.png', 'Kadabra', 11, NULL),
 (42, 47, '1714876356.png', 'Parasect', 16, 1),
 (43, 44, '1714876481.png', 'Gloom', 1, 7),
-(44, 25, '1714876574.png', 'Pikachu', 8, 8),
-(45, 33, '1714876648.png', 'Nidorino', 7, 1),
-(48, 28, '1714876870.png', 'Sandslash', 9, 9),
+(44, 25, '1714876574.png', 'Pikachu', 8, NULL),
+(45, 33, '1714876648.png', 'Nidorino', 7, NULL),
+(48, 28, '1714876870.png', 'Sandslash', 9, NULL),
 (49, 19, '1714877013.png', 'Rattata', 6, 9),
 (50, 16, '1714877079.png', 'Pidgey', 6, 4),
 (52, 13, '1714877281.png', 'Weedle', 16, 7),
 (54, 9, '1714877455.png', 'Blastoise', 3, 3),
-(55, 37, '1714877534.png', 'Vulpix', 2, 2),
+(55, 37, '1714877534.png', 'Vulpix', 2, NULL),
 (57, 31, '1714877683.png', 'Nidoqueen', 7, 9),
 (58, 38, '1714877751.png', 'Ninetales', 2, 7),
-(59, 39, '1714877853.png', 'Jigglypuff', 6, 4),
+(59, 39, '1714877853.png', 'Jigglypuff', 6, NULL),
 (60, 42, '1714877951.png', 'Golbat', 7, 4),
 (61, 43, '1714878075.png', 'Oddish', 1, 7),
 (62, 46, '1714878178.png', 'Paras', 16, 1),
 (63, 45, '1714878318.png', 'Vileplume', 1, 7),
-(64, 50, '1714878482.png', 'Diglett', 9, 9),
-(66, 54, '1714878819.png', 'Psyduck', 3, 3),
-(67, 58, '1714878929.png', 'Growlithe', 2, 2),
+(64, 50, '1714878482.png', 'Diglett', 9, NULL),
+(66, 54, '1714878819.png', 'Psyduck', 3, NULL),
+(67, 58, '1714878929.png', 'Growlithe', 2, NULL),
 (68, 59, '1714879117.png', 'Arcanine', 2, 12),
 (69, 62, '1714879200.png', 'Poliwrath', 3, 10),
-(71, 63, '1714879549.png', 'Abra', 11, 11),
-(73, 61, '1714879933.png', 'Poliwhirl', 3, 3),
-(74, 55, '1714880024.png', 'Golduck', 3, 3),
-(75, 57, '1714880083.png', 'Primeame', 10, 10),
+(71, 63, '1714879549.png', 'Abra', 11, NULL),
+(73, 61, '1714879933.png', 'Poliwhirl', 3, NULL),
+(74, 55, '1714880024.png', 'Golduck', 3, NULL),
+(75, 57, '1714880083.png', 'Primeame', 10, NULL),
 (76, 41, '1714880240.png', 'Zubat', 7, 6),
-(78, 49, '1714880432.png', 'Venomoth', 16, 7);
+(78, 49, '1714880432.png', 'Venomoth', 16, 7),
+(80, 88, '1714950137.png', 'Grimer', 7, NULL);
 
 -- --------------------------------------------------------
 
@@ -156,12 +135,6 @@ INSERT INTO `tipo` (`id_tipo_pokemon`, `descripcion`) VALUES
 --
 
 --
--- Indices de la tabla `login`
---
-ALTER TABLE `login`
-  ADD PRIMARY KEY (`id_usuario`);
-
---
 -- Indices de la tabla `pokemon`
 --
 ALTER TABLE `pokemon`
@@ -181,16 +154,10 @@ ALTER TABLE `tipo`
 --
 
 --
--- AUTO_INCREMENT de la tabla `login`
---
-ALTER TABLE `login`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
 -- AUTO_INCREMENT de la tabla `pokemon`
 --
 ALTER TABLE `pokemon`
-  MODIFY `id_bdd` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `id_bdd` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo`
