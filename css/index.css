@@ -234,3 +234,7 @@ footer {
     justify-content: space-around;
     margin: 0% 8% 1% 8%;
 }
+.miFormulario {
+    display:flex;
+    align-items: center;
+}
