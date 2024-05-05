@@ -11,6 +11,7 @@ if (isset($_GET['error']) && $_GET['error'] == 1 && isset($_SESSION["error_messa
     unset($_SESSION["error_message"]);
 }
 $usuarioLogueado = isset($_SESSION['usuario']);
+require_once "php/cargarGlobales.php";
 ?>
 
 <!DOCTYPE html>
@@ -47,19 +48,15 @@ $usuarioLogueado = isset($_SESSION['usuario']);
     </form>
 
     <?php
-    $host = "localhost";
-    $usuario = "root";
-    $contrasenia = "";
-    $base_datos = "pokemon";
 
-    $conn = new mysqli($host, $usuario, $contrasenia, $base_datos);
+    $conn = new mysqli($GLOBALS['hostdb'], $GLOBALS['userdb'], $GLOBALS['passdb'], $GLOBALS['schemadb']);
 
     if ($conn->connect_error) {
         die("Error al conectar con la base de datos: " . $conn->connect_error);
     }
 
     // Obtener los tipos de Pokémon
-    $sql_tipos = "SELECT * FROM tipo";
+    $sql_tipos = "SELECT * FROM " . $GLOBALS['tableTypes'];
     $resultado_tipos = $conn->query($sql_tipos);
 
     $tipos = array(); // Array para almacenar los tipos de Pokémon
@@ -72,9 +69,9 @@ $usuarioLogueado = isset($_SESSION['usuario']);
     $pokemonBuscado = isset($_GET['busqueda']) ? $_GET['busqueda'] : '';
 
     $sql = "SELECT p.*, t1.descripcion AS tipo1, t2.descripcion AS tipo2 
-            FROM pokemon p 
-            LEFT JOIN tipo t1 ON p.id_tipo_pokemon1 = t1.id_tipo_pokemon
-            LEFT JOIN tipo t2 ON p.id_tipo_pokemon2 = t2.id_tipo_pokemon
+            FROM " . $GLOBALS['tablePokemon'] . " p 
+            LEFT JOIN " . $GLOBALS['tableTypes'] . " t1 ON p.id_tipo_pokemon1 = t1.id_tipo_pokemon
+            LEFT JOIN " . $GLOBALS['tableTypes'] . " t2 ON p.id_tipo_pokemon2 = t2.id_tipo_pokemon
             WHERE p.nombre LIKE '%$pokemonBuscado%' 
             OR t1.descripcion LIKE '%$pokemonBuscado%' 
             OR t2.descripcion LIKE '%$pokemonBuscado%' 
