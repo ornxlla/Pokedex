@@ -56,13 +56,11 @@ if ($result->num_rows > 0) {
     <textarea id="desc_pokemon" name="desc_pokemon" rows="10" cols="100"
               placeholder="Descripción del Pokémon..."></textarea><br>
     <div class="botones">
-       <input type="submit" id="crearPokemon" name="crearPokemon" value="Crear">
+        <input type="submit" id="crearPokemon" name="crearPokemon" value="Crear">
         <a href="home.php" class="botonVolver">Volver</a>
     </div>
 
-
-
-
+    
 </form>
 
 <?php
@@ -209,4 +207,3 @@ if (isset($_POST['crearPokemon'])) {
         margin-right: 0.5em;
     }
 </style>
-

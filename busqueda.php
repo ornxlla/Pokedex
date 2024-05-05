@@ -3,6 +3,19 @@ session_start();
 $usuarioLogueado = isset($_SESSION['usuario']);
 require_once "php/cargarGlobales.php";
 ?>
+
+<script>
+    function modificarPokemon(id){
+        window.location.href='modifPokemon.php?id=' + id;
+    }
+
+    function eliminarPokemon(id, nombre){
+        let msg = "Esta accion no tiene vuelta atras.\n¿Estas seguro que deseas eliminar a " + nombre + "?";
+        if(confirm(msg)){
+            window.location.href='./php/baja.php?id=' + id;
+        }
+    }
+</script>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -79,7 +92,16 @@ require_once "php/cargarGlobales.php";
                     echo "</div>";
                 }
 
-                echo "</a></div>";
+                echo '</a>';
+              if(isset($_SESSION['usuario'])) {
+                  if ($_SESSION['admin'] == 1) {
+                      echo '<div class="infoPokemon">';
+                      echo '<input type="button" class="modificarPokemon" name="modificarPokemon" id="modificarPokemon" value="Modificar Pokemon" onclick="modificarPokemon(\'' . $fila["id_bdd"] . '\')"> </br>';
+                      echo '<input type="button" class="eliminarPokemon" name="eliminarPokemon" id="eliminarPokemon" value="Eliminar Pokemon" onclick="eliminarPokemon(\'' . $fila["id_bdd"] . '\', \'' . $fila["nombre"] . '\')">';
+                      echo '</div>';
+                  }
+              }
+                echo "</div><br>";
             }
         } else {
 
@@ -117,7 +139,16 @@ require_once "php/cargarGlobales.php";
                             echo "</div>";
                         }
 
-                        echo "</div></a>";
+                        echo '</a>';
+                        if(isset($_SESSION['usuario'])) {
+                            if ($_SESSION['admin'] == 1) {
+                                echo '<div class="infoPokemon">';
+                                echo '<input type="button" class="modificarPokemon" name="modificarPokemon" id="modificarPokemon" value="Modificar Pokemon" onclick="modificarPokemon(\'' . $fila_todos["id_bdd"] . '\')"> </br>';
+                                echo '<input type="button" class="eliminarPokemon" name="eliminarPokemon" id="eliminarPokemon" value="Eliminar Pokemon" onclick="eliminarPokemon(\'' . $fila_todos["id_bdd"] . '\', \'' . $fila_todos["nombre"] . '\')">';
+                                echo '</div>';
+                            }
+                        }
+                        echo "</div><br>";
                     }
                 } else {
 
@@ -129,16 +160,22 @@ require_once "php/cargarGlobales.php";
             }
         }
 
+        ?>
+    </div>
+        <?php
+
         if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
+            echo '<div>';
             echo '<form method="get" action="home.php">';
             echo '<button class="botonVolver" type="submit">Volver</button>';
             echo '</form>';
+            echo '</div>';
         }
 
         $conn->close();
         ?>
 
-    </div>
+
 
 </main>
 <footer>
