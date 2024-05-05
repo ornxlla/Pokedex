@@ -34,11 +34,10 @@ require_once "php/cargarGlobales.php";
 
 <main>
 
-    <form action="busqueda.php" method="GET">
+    <form class="miFormulario" action="busqueda.php" method="GET">
         <input type="text" name="busqueda" id="buscar" placeholder="Ingrese el nombre, tipo o número de Pokémon">
         <input type="submit" id="buscarpokemon" name="buscarpokemon" value="¿Quién es este Pokémon?">
     </form>
-
 
     <?php
 
