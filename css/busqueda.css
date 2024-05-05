@@ -71,3 +71,10 @@ p {
     display:flex;
     align-items: center;
 }
+.pokemon-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 0% 8% 1% 8%;
+}

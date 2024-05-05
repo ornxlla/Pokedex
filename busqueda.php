@@ -39,18 +39,19 @@ require_once "php/cargarGlobales.php";
         <input type="submit" id="buscarpokemon" name="buscarpokemon" value="¿Quién es este Pokémon?">
     </form>
 
-    <?php
+    <div class="pokemon-container">
 
-    $conn = new mysqli($GLOBALS['hostdb'], $GLOBALS['userdb'], $GLOBALS['passdb'], $GLOBALS['schemadb']);
+        <?php
 
-    if ($conn->connect_error) {
-        die("Error al conectar con la base de datos: " . $conn->connect_error);
-    }
+        $conn = new mysqli($GLOBALS['hostdb'], $GLOBALS['userdb'], $GLOBALS['passdb'], $GLOBALS['schemadb']);
 
-    $pokemonBuscado = isset($_GET['busqueda']) ? $_GET['busqueda'] : '';
+        if ($conn->connect_error) {
+            die("Error al conectar con la base de datos: " . $conn->connect_error);
+        }
 
+        $pokemonBuscado = isset($_GET['busqueda']) ? $_GET['busqueda'] : '';
 
-    $sql = "SELECT p.*, t1.descripcion AS tipo1, t2.descripcion AS tipo2 
+        $sql = "SELECT p.*, t1.descripcion AS tipo1, t2.descripcion AS tipo2 
         FROM " . $GLOBALS['tablePokemon'] . " p 
         LEFT JOIN " . $GLOBALS['tableTypes'] . " t1 ON p.id_tipo_pokemon1 = t1.id_tipo_pokemon
         LEFT JOIN " . $GLOBALS['tableTypes'] . " t2 ON p.id_tipo_pokemon2 = t2.id_tipo_pokemon
@@ -59,89 +60,86 @@ require_once "php/cargarGlobales.php";
         OR t2.descripcion LIKE '%$pokemonBuscado%' 
         OR p.id_pokemon = '$pokemonBuscado'";
 
-    $resultado = $conn->query($sql);
+        $resultado = $conn->query($sql);
 
-    if ($resultado->num_rows > 0) {
+        if ($resultado->num_rows > 0) {
 
-        while ($fila = $resultado->fetch_assoc()) {
-            echo "<a href='vistaPokemon.php?id=" . $fila["id_pokemon"] . "'>";
-            echo "<div class='tablaBus'>";
-            echo "<div class='imagenPokeBus'><img src='img/pokemones/" . $fila['imagen'] . "' alt='" . $fila['nombre'] . "'></div>";
-            echo "<div class='nombrePokeBus'><p>" . $fila['nombre'] . "</p></div>";
-            echo "<div class='numeroPokeBus'><p>#" . $fila['id_pokemon'] . "</p></div>";
+            while ($fila = $resultado->fetch_assoc()) {
+                echo "<a href='vistaPokemon.php?id=" . $fila["id_pokemon"] . "'>";
+                echo "<div class='tablaBus'>";
+                echo "<div class='imagenPokeBus'><img src='img/pokemones/" . $fila['imagen'] . "' alt='" . $fila['nombre'] . "'></div>";
+                echo "<div class='nombrePokeBus'><p>" . $fila['nombre'] . "</p></div>";
+                echo "<div class='numeroPokeBus'><p>#" . $fila['id_pokemon'] . "</p></div>";
 
-            echo "<div class='tipoPoke'>";
-            echo "<img src='img/tipo_" . $fila["tipo1"] . ".png' style='height: 15px; width: 100px; '>";
-            echo "</div>";
-
-            if (!empty($fila["tipo2"])) {
                 echo "<div class='tipoPoke'>";
-                echo "<img src='img/tipo_" . $fila["tipo2"] . ".png' style='height: 15px; width: 100px; '>";
+                echo "<img src='img/tipo_" . $fila["tipo1"] . ".png' style='height: 15px; width: 100px; '>";
                 echo "</div>";
+
+                if (!empty($fila["tipo2"])) {
+                    echo "<div class='tipoPoke'>";
+                    echo "<img src='img/tipo_" . $fila["tipo2"] . ".png' style='height: 15px; width: 100px; '>";
+                    echo "</div>";
+                }
+
+                echo "</a></div>";
             }
-
-            echo "</a></div>";
-        }
-    } else {
-
-        //verifica si ya se hizo la busqueda
-        if (!isset($_GET['busqueda']) || $_GET['busqueda'] === '') {
-            echo "<div class='error-message'>Introduce un término de búsqueda</div>";
         } else {
-            echo "<div class='error-message'>Pokemon no encontrado</div>";
 
-            //muestra todos los disponibles
-            $sql_todos = "SELECT p.*, t1.descripcion AS tipo1, t2.descripcion AS tipo2 
+            //verifica si ya se hizo la busqueda
+            if (!isset($_GET['busqueda']) || $_GET['busqueda'] === '') {
+                echo "<div class='error-message'>Introduce un término de búsqueda</div>";
+            } else {
+                echo "<div class='error-message'>Pokemon no encontrado</div>";
+
+                //muestra todos los disponibles
+                $sql_todos = "SELECT p.*, t1.descripcion AS tipo1, t2.descripcion AS tipo2 
                   FROM " . $GLOBALS['tablePokemon'] . " p 
                   LEFT JOIN " . $GLOBALS['tableTypes'] . " t1 ON p.id_tipo_pokemon1 = t1.id_tipo_pokemon
                   LEFT JOIN " . $GLOBALS['tableTypes'] . " t2 ON p.id_tipo_pokemon2 = t2.id_tipo_pokemon";
-            $resultado_todos = $conn->query($sql_todos);
+                $resultado_todos = $conn->query($sql_todos);
 
-            if ($resultado_todos->num_rows > 0) {
-                while ($fila_todos = $resultado_todos->fetch_assoc()) {
-                    echo "<a href='vistaPokemon.php?id=" . $fila_todos["id_pokemon"] . "'>";
-                    echo "<div class='tablaBus'>";
-                    echo "<div class='imagenPokeBus'> <img src='img/pokemones/" . $fila_todos["imagen"] . "'></div>";
-                    echo "<div class='nombrePokeBus'> <p>" . $fila_todos["nombre"] . "</p></div>";
-                    echo "<div class='numeroPokeBus'><p>#" . $fila_todos["id_pokemon"] . "</p></div>";
+                if ($resultado_todos->num_rows > 0) {
+                    while ($fila_todos = $resultado_todos->fetch_assoc()) {
+                        echo "<a href='vistaPokemon.php?id=" . $fila_todos["id_pokemon"] . "'>";
+                        echo "<div class='tablaBus'>";
+                        echo "<div class='imagenPokeBus'> <img src='img/pokemones/" . $fila_todos["imagen"] . "'></div>";
+                        echo "<div class='nombrePokeBus'> <p>" . $fila_todos["nombre"] . "</p></div>";
+                        echo "<div class='numeroPokeBus'><p>#" . $fila_todos["id_pokemon"] . "</p></div>";
 
+                        if (!empty($fila_todos["tipo1"])) {
+                            echo "<div class='tipoPoke'>";
+                            echo "<img src='img/tipo_" . $fila_todos["tipo1"] . ".png' style='height: 15px; width: 100px; '>";
+                            echo "</div>";
+                        }
 
-                    if (!empty($fila_todos["tipo1"])) {
-                        echo "<div class='tipoPoke'>";
-                        echo "<img src='img/tipo_" . $fila_todos["tipo1"] . ".png' style='height: 15px; width: 100px; '>";
-                        echo "</div>";
+                        if (!empty($fila_todos["tipo2"])) {
+                            echo "<div class='tipoPoke'>";
+                            echo "<img src='img/tipo_" . $fila_todos["tipo2"] . ".png' style='height: 15px; width: 100px; '>";
+                            echo "</div>";
+                        }
+
+                        echo "</div></a>";
                     }
+                } else {
+
+                    echo "<div class='errorUser'>No hay Pokémon disponibles</div>";
 
 
-                    if (!empty($fila_todos["tipo2"])) {
-                        echo "<div class='tipoPoke'>";
-                        echo "<img src='img/tipo_" . $fila_todos["tipo2"] . ".png' style='height: 15px; width: 100px; '>";
-                        echo "</div>";
-                    }
-
-                    echo "</div></a>";
                 }
-            } else {
-
-                echo "<div class='errorUser'>No hay Pokémon disponibles</div>";
-
 
             }
-
         }
-    }
 
+        if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
+            echo '<form method="get" action="home.php">';
+            echo '<button class="botonVolver" type="submit">Volver</button>';
+            echo '</form>';
+        }
 
-    if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
-        echo '<form method="get" action="home.php">';
-        echo '<button class="botonVolver" type="submit">Volver</button>';
-        echo '</form>';
-    }
+        $conn->close();
+        ?>
 
-
-    $conn->close();
-    ?>
-
+    </div>
 
 </main>
 <footer>
