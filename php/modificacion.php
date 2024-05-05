@@ -38,6 +38,7 @@ function modificarImagen(){
         $img_flag = 0;
     }
 
+<<<<<<< HEAD
     #check de que el archivo no exista
     if(file_exists($img_pokemon_file)){
         echo "<script>console.log('El archivo de imagen ya existe'</script>";
@@ -60,6 +61,9 @@ function modificarImagen(){
 
 function modificarImagen_db($id_db, $new_name){
     if($id_db){
+=======
+    function modificarDB($id_db ,  $id_new, $nombre_new, $tipo1_new, $tipo2_new, $tipo2_old){
+>>>>>>> 2a411ad800d5340bed7b74fe3dae890335bc498e
         $conn = new mysqli($GLOBALS['hostdb'], $GLOBALS['userdb'], $GLOBALS['passdb'], $GLOBALS['schemadb']);
 
         if ($conn->connect_error) {
@@ -68,7 +72,35 @@ function modificarImagen_db($id_db, $new_name){
             echo "<script> console.log('Conexión a db exitosa')</script>";
         }
 
+<<<<<<< HEAD
         $sql = "UPDATE " . $GLOBALS['tablePokemon'] . " SET imagen = '" . $new_name . "' WHERE id_bdd = " . $id_db;
+=======
+        if($tipo2_new != ""){
+            $sql = "UPDATE " . $GLOBALS['tablePokemon'] .
+                " SET id_pokemon = '"    . $id_new .
+                "', nombre = '"            . $nombre_new .
+                "', id_tipo_pokemon1 = '"  . $tipo1_new .
+                "', id_tipo_pokemon2 = '"  . $tipo2_new .
+                "' WHERE id_bdd = "       . $id_db ;
+        }else{
+            if($tipo2_old == ""){
+                $sql = "UPDATE ". $GLOBALS['tablePokemon'] .
+                    " SET id_pokemon = '"       . $id_new .
+                    "', nombre = '"             . $nombre_new .
+                    "', id_tipo_pokemon1 = '"   . $tipo1_new .
+                    "' WHERE id_bdd = "         . $id_db ;
+            }else{
+                $sql = "UPDATE " . $GLOBALS['tablePokemon'] .
+                    " SET id_pokemon = '"       . $id_new .
+                    "', nombre = '"             . $nombre_new .
+                    "', id_tipo_pokemon1 = '"   . $tipo1_new .
+                    "', id_tipo_pokemon2 = NULL
+                        WHERE id_bdd = "        . $id_db ;
+            }
+
+        }
+
+>>>>>>> 2a411ad800d5340bed7b74fe3dae890335bc498e
         if($conn->query($sql) === TRUE){
             $conn->close();
             echo "<script> console.log('Se actualizo la tabla de forma correcta! (Campo Imagen)')</script>";
