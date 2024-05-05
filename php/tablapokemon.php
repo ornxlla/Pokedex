@@ -60,8 +60,10 @@ foreach ($pokemon as $poke) {
             }
 
             if ($_SESSION['admin'] == 1) {
-                echo '<input type="button" name="modificafPokemon" id="modificarPokemon" value="Modificar Pokemon" onclick="modificarPokemon(\'' . $poke["id_bdd"] . '\')"> </br>';
-                echo '<input type="button" name="eliminarPokemon" id="eliminarPokemon" value="Eliminar Pokemon" onclick="eliminarPokemon(\'' . $poke["id_bdd"] . '\', \'' . $poke["nombre"] . '\')">';
+                echo '<div class="infoPokemon">';
+                echo '<input type="button" class="modificarPokemon" name="modificafPokemon" id="modificarPokemon" value="Modificar Pokemon" onclick="modificarPokemon(\'' . $poke["id_bdd"] . '\')"> </br>';
+                echo '<input type="button" class="eliminarPokemon" name="eliminarPokemon" id="eliminarPokemon" value="Eliminar Pokemon" onclick="eliminarPokemon(\'' . $poke["id_bdd"] . '\', \'' . $poke["nombre"] . '\')">';
+                echo '</div>';
             }
             echo "</div></div><br>";
         }

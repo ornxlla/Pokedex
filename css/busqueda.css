@@ -57,3 +57,13 @@ p {
     background-color: #FF0000;
     color: white;
 }
+
+.infoPokemon {
+    text-align: center; /
+    margin-top: 10px;
+}
+
+.infoPokemon p {
+    margin: 0;
+    padding: 0;
+}

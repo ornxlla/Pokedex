@@ -1,5 +1,4 @@
 
-
 .tabla{
     border-radius: 5px;
     border: 2px solid red;
@@ -12,7 +11,7 @@
 }
 
 .tabla img{
-     width: 150px;
+
     height: 150px;
     justify-content: center;
 }
@@ -60,4 +59,21 @@ a{
     color: black;
     font-weight: bold;
     font-size: 18px;
+}
+.infoPokemon {
+    text-align: center;
+}
+
+.numeroPoke img {
+    display: block;
+    margin: 0 auto;
+
+}
+.tipoPoke img {
+    margin-top: 2%;
+    display: block;
+    margin: 0 auto;
+}
+.numeroPoke  {
+    margin: 1%;
 }

@@ -88,28 +88,29 @@ $usuarioLogueado = isset($_SESSION['usuario']);
             echo "<a href='vistaPokemon.php?id=" . $fila["id_pokemon"] . "'>";
             echo "<div class='tablaBus'>";
             echo "<div class='imagenPokeBus'> <img src='img/pokemones/" . $fila["imagen"] . "'></div>";
+            echo "<div class='infoPokemon'>"; // Contenedor para la información del Pokémon
             echo "<div class='nombrePokeBus'> <p>" . $fila["nombre"] . "</p></div>";
             echo "<div class='numeroPokeBus'><p>#" . $fila["id_pokemon"] . "</p></div>";
+            echo "<div class='tiposPokemon'>";
 
             foreach ($tipos as $tipodescrip) {
                 if ($fila["id_tipo_pokemon1"] == $tipodescrip["id_tipo_pokemon"]) {
                     echo "<div class='tipoPoke'>";
-                    echo "<img src='img/tipo_" . $tipodescrip["descripcion"] . ".png' style='height: 15px; width: 100px; '>";
+                    echo "<img src='img/tipo_" . $tipodescrip["descripcion"] . ".png'>";
+                    echo "</div>";
+                }
+
+                if (!empty($fila["id_tipo_pokemon2"]) && $fila["id_tipo_pokemon2"] == $tipodescrip["id_tipo_pokemon"]) {
+                    echo "<div class='tipoPoke'>";
+                    echo "<img src='img/tipo_" . $tipodescrip["descripcion"] . ".png'>";
                     echo "</div>";
                 }
             }
 
-            if (!empty($fila["id_tipo_pokemon2"])) {
-                foreach ($tipos as $tipodescrip) {
-                    if ($fila["id_tipo_pokemon2"] == $tipodescrip["id_tipo_pokemon"]) {
-                        echo "<div class='tipoPoke'>";
-                        echo "<img src='img/tipo_" . $tipodescrip["descripcion"] . ".png' style='height: 15px; width: 100px; '>";
-                        echo "</div>";
-                    }
-                }
-            }
-
-            echo "</div></a>";
+            echo "</div>";
+            echo "</div>";
+            echo "</div>";
+            echo "</a>";
         }
         echo "</div>";
     } else {
