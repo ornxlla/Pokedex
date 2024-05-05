@@ -78,3 +78,18 @@ p {
     justify-content: space-around;
     margin: 0% 8% 1% 8%;
 }
+
+@media screen and (max-width: 621px) {
+    .tablaBus {
+        width: 100%;
+        margin: 2% 0;
+    }
+
+    .botonVolver {
+        width: 100%;
+        margin-right: 0;
+    }
+    .pokemon-container {
+        margin: 0 5%;
+    }
+}

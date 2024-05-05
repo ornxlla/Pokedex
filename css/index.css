@@ -238,3 +238,31 @@ footer {
     display:flex;
     align-items: center;
 }
+.miFormulario {
+    display: flex;
+
+    align-items: center;
+}
+
+.miFormulario input[type="text"],
+.miFormulario input[type="submit"] {
+    width: 80%;
+    margin: 1rem 0;
+}
+
+@media screen and (max-width: 768px) {
+    .miFormulario input[type="text"],
+    .miFormulario input[type="submit"] {
+        width: 100%;
+    }
+}
+
+.pokemon-container {
+    margin: 0% 5%;
+}
+
+@media screen and (max-width: 621px) {
+    .pokemon-container {
+        margin: 0% 2%;
+    }
+}
