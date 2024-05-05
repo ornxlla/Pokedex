@@ -2,7 +2,7 @@
     <div class="acomodarFooter">
         <div class="seccion1Footer">
             <div class="logoynombreFooter">
-                <img src="img/pokeball.png">
+                <img src="./img/pokeball.png">
                 <h2>Pokedex</h2>
             </div>
             <div class="alumnos">

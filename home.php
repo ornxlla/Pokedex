@@ -23,9 +23,9 @@ session_start();
 <header>
     <?php
     if(isset($_SESSION['usuario'])) {
-        include('headerUserLogueado.php');
+        include('php/headerUserLogueado.php');
     } else {
-        include('header.php');
+        include('php/header.php');
     }
     ?>
 </header>
@@ -71,7 +71,7 @@ session_start();
 
 <footer>
     <?php
-    include ('footer.php')
+    include('php/footer.php')
     ?>
 </footer>
 

@@ -33,9 +33,9 @@ $usuarioLogueado = isset($_SESSION['usuario']);
 <header>
     <?php
     if($usuarioLogueado) {
-        include_once ('headerUserLogueado.php');
+        include_once('php/headerUserLogueado.php');
     } else {
-        include_once('header.php');
+        include_once('php/header.php');
     }
     ?>
 </header>
@@ -127,7 +127,7 @@ $usuarioLogueado = isset($_SESSION['usuario']);
 </main>
 
 <footer>
-    <?php include('footer.php') ?>
+    <?php include('php/footer.php') ?>
 </footer>
 
 </body>

@@ -172,7 +172,7 @@ if(isset($_GET['id'])){
     $data_old_text = file_get_contents('./txt/' . $data_old_archivo[0] . '.txt');
     $GLOBALS['textFile'] = $data_old_archivo[0] . '.txt';
 
-    $sql2 = "SELECT * FROM tipo";
+    $sql2 = "SELECT * FROM " . $GLOBALS['tableTypes'] ;
     $result2 = $conn->query($sql2);
 
     $tiposPokemon = array();
@@ -203,7 +203,7 @@ if(isset($_GET['id'])){
         <?php
         echo "<label for='tipo1_pokemon'>Tipo primario:</label>";
         echo "<select id='tipo1_pokemon' name='tipo1_pokemon'>";
-        echo "<option value=''></option>";
+        echo "<option value='' disabled ></option>";
         foreach ($tiposPokemon as $tipo) {
             echo "<option value='" . $tipo['id_tipo_pokemon'] . "'";
             if($tipo['id_tipo_pokemon'] == $data_old["id_tipo_pokemon1"]){

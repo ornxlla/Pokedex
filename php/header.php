@@ -1,7 +1,7 @@
 <header>
     <nav>
         <div class="logo">
-            <img src="img/pokeball.png">
+            <img src="./img/pokeball.png">
         </div>
 
         <div class="nombrePag">
