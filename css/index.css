@@ -170,15 +170,20 @@ footer {
     }
 }
 
-.error-message {
-    font-family: "Pixelify Sans", sans-serif;
-    color: #FF0000;
-    background-color: #FFEFEF;
-    padding: 10px;
-    border: 1px solid #FF0000;
+h1.error-message {
+    margin: 1rem;
+    height: 32px;
+    width: 67%;
     border-radius: 5px;
-    margin-bottom: 10px;
-    width: 100%;
+    border: 2px solid red;
+    background-color: #FFEFEF;
+    text-align: center;
+    font-family: 'Pixelify Sans', sans-serif;
+    display: flex;
+    display: grid;
+    align-items: center;
+    color: #e22424;
+    font-size: 1em;
 }
 
 .usuarioBienvenido{
@@ -209,14 +214,6 @@ footer {
     text-decoration: underline;
     color: #FF0000;
 }
-/*
-.contenedor{
-    border: 2px solid #FF0000;
-    margin: 2em;
-    padding: 5px;
-    border-radius: 5px;
-
-}*/
 
 .errorUser{
     margin: 1rem; height: 32px; width: 67%; border-radius: 5px;
@@ -239,11 +236,6 @@ footer {
     display:flex;
     align-items: center;
 }
-.miFormulario {
-    display: flex;
-
-    align-items: center;
-}
 
 .miFormulario input[type="text"],
 .miFormulario input[type="submit"] {
@@ -256,10 +248,6 @@ footer {
     .miFormulario input[type="submit"] {
         width: 100%;
     }
-}
-
-.pokemon-container {
-    margin: 0% 5%;
 }
 
 @media screen and (max-width: 621px) {
