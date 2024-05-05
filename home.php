@@ -3,6 +3,8 @@ session_start();
 $usuarioLogueado = isset($_SESSION['usuario']);
 ?>
 
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -50,12 +52,6 @@ $usuarioLogueado = isset($_SESSION['usuario']);
     </form>
 
     <h2 class="pokd">Pokemones disponibles</h2>
-    <div class="pokemonesDisponibles">
-        <?php
-        include("php/tablapokemon.php")
-        ?>
-    </div>
-
     <div class="subirpoke">
         <?php
         if(isset($_SESSION['usuario']) && $_SESSION['admin'] == 1) {
@@ -65,6 +61,13 @@ $usuarioLogueado = isset($_SESSION['usuario']);
         }
         ?>
     </div>
+    <div class="pokemonesDisponibles">
+        <?php
+        include("php/tablapokemon.php")
+        ?>
+    </div>
+
+
 
 
 </main>
