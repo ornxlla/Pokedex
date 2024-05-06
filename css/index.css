@@ -94,7 +94,7 @@ footer {
 }
 
 .acomodarFooter {
-    margin: 1rem;
+    margin: 1rem 1rem 0rem 1rem;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -162,7 +162,6 @@ footer {
     }
 }
 
-
 @media screen and (min-width: 1286px) {
     #buscarpokemon {
         width: 15%;
@@ -229,12 +228,11 @@ h1.error-message {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
-    margin: 0% 8% 1% 8%;
 }
 .miFormulario {
     display:flex;
     align-items: center;
+    justify-content: center;
 }
 
 .miFormulario input[type="text"],
