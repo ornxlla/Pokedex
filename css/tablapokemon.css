@@ -1,0 +1,79 @@
+
+.tabla{
+    border-radius: 5px;
+    border: 2px solid red;
+    margin: 2%;
+}
+
+.tabla p{
+   text-align: center;
+
+}
+
+.tabla img{
+
+    height: 150px;
+    justify-content: center;
+}
+
+p{
+    font-family: "Poppins", sans-serif;
+}
+
+#modificarPokemon{
+    border-radius: 5px;
+    border: 2px solid red;
+    margin: 2%;
+    background-color:white;
+    color: red;
+    font-weight: bold;
+    padding: 1%;
+    font-family: "Poppins", sans-serif;
+}
+
+#eliminarPokemon{
+    border-radius: 5px;
+    border: 2px solid red;
+    margin: 2%;
+    background-color:white;
+    color: red;
+    font-weight: bold;
+    padding: 1%;
+    font-family: "Poppins", sans-serif;
+}
+
+
+#modificarPokemon:hover{
+    background-color:red;
+    color: white;
+    transition: 0.5s;
+}
+#eliminarPokemon:hover{
+    background-color:red;
+    color: white;
+    transition: 0.5s;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+}
+.infoPokemon {
+    text-align: center;
+}
+
+.numeroPoke img {
+    display: block;
+    margin: 0 auto;
+
+}
+.tipoPoke img {
+    margin-top: 2%;
+    display: block;
+    margin: 0 auto;
+}
+.numeroPoke  {
+    margin: 1%;
+}
