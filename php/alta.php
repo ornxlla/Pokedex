@@ -57,7 +57,7 @@ if ($result->num_rows > 0) {
               placeholder="Descripción del Pokémon..."></textarea><br>
     <div class="botones">
         <input type="submit" id="crearPokemon" name="crearPokemon" value="Crear">
-        <a href="home.php" class="botonVolver">Volver</a>
+        <a href="index.php" class="botonVolver">Volver</a>
     </div>
 
     
