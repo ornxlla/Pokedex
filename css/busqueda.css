@@ -7,7 +7,6 @@
 
 }
 
-
 .imagenPokeBus img {
     width: 100%;
     height: auto;
@@ -62,7 +61,6 @@ p {
     font-family: "Poppins", sans-serif;
 }
 
-
 #modificarPokemon:hover{
     background-color:red;
     color: white;
@@ -101,16 +99,18 @@ p {
     margin: 0;
     padding: 0;
 }
+
 .miFormulario {
     display:flex;
     align-items: center;
+    justify-content: center;
 }
+
 .pokemon-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
-    margin: 0% 8% 1% 8%;
+
 }
 
 .error-message p{
