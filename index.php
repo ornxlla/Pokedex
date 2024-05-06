@@ -1,9 +1,6 @@
 <?php
 session_start();
-if (isset($_GET['error']) && $_GET['error'] == 1 && isset($_SESSION["error_message"])) {
-    echo "<h1 class=\"error-message\">" . $_SESSION["error_message"] . "</h1>";
-    unset($_SESSION["error_message"]);
-}
+
 $usuarioLogueado = isset($_SESSION['usuario']);
 require_once "php/cargarGlobales.php";
 ?>
@@ -14,6 +11,8 @@ require_once "php/cargarGlobales.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/tablapokemon.css">
     <link rel="stylesheet" href="css/busqueda.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,98 +26,62 @@ require_once "php/cargarGlobales.php";
 
 <header>
     <?php
-    if($usuarioLogueado) {
-        include_once('php/headerUserLogueado.php');
+
+
+    if(isset($_SESSION['usuario'])) {
+        include('php/headerUserLogueado.php');
     } else {
-        include_once('php/header.php');
+        include('php/header.php');
+    }
+
+    if (isset($_GET['error'])){
+        if(isset($_SESSION["error_message"]) && $_GET['error'] == 1){
+            echo "<h1 class=\"error-message\">" . $_SESSION["error_message"] . "</h1>";
+            unset($_SESSION["error_message"]);
+        }elseif($_GET['error'] == 2){
+            echo "<h1 class=\"error-message\"> Por favor, complete los datos ! </h1>";
+        }
     }
     ?>
 </header>
 
 <main>
-    <form class="miFormulario" action="busqueda.php" method="GET">
+    <?php
+    if(isset($_SESSION['usuario'])){
+        if($_SESSION['admin'] == 1) {
+            echo "<h2>Bienvenid@ " . $_SESSION['usuario'] . " (Administrador)</h2>";
+        } else {
+            echo "<h2>Bienvenid@ " . $_SESSION['usuario'] . "</h2>";
+        }
+    }
+    ?>
+
+    <form action="busqueda.php" method="GET">
         <input type="text" name="busqueda" id="buscar" placeholder="Ingrese el nombre, tipo o número de Pokémon">
         <input type="submit" id="buscarpokemon" name="buscarpokemon" value="¿Quién es este Pokémon?">
     </form>
 
-    <?php
-
-    $conn = new mysqli($GLOBALS['hostdb'], $GLOBALS['userdb'], $GLOBALS['passdb'], $GLOBALS['schemadb']);
-
-    if ($conn->connect_error) {
-        die("Error al conectar con la base de datos: " . $conn->connect_error);
-    }
-
-    // Obtener los tipos de Pokémon
-    $sql_tipos = "SELECT * FROM " . $GLOBALS['tableTypes'];
-    $resultado_tipos = $conn->query($sql_tipos);
-
-    $tipos = array(); // Array para almacenar los tipos de Pokémon
-    if ($resultado_tipos->num_rows > 0) {
-        while ($fila_tipo = $resultado_tipos->fetch_assoc()) {
-            $tipos[] = $fila_tipo;
+    <h2 class="pokd">Pokemones disponibles</h2>
+    <div class="subirpoke">
+        <?php
+        if(isset($_SESSION['usuario']) && $_SESSION['admin'] == 1) {
+            echo "<form action='crearPokemon.php' method='GET'>";
+            echo "<input type='submit' name='subirPokemon' id='subirPokemon' value='Subir Pokemon'>";
+            echo "</form>";
         }
-    }
-
-    $pokemonBuscado = isset($_GET['busqueda']) ? $_GET['busqueda'] : '';
-
-    $sql = "SELECT p.*, t1.descripcion AS tipo1, t2.descripcion AS tipo2 
-            FROM " . $GLOBALS['tablePokemon'] . " p 
-            LEFT JOIN " . $GLOBALS['tableTypes'] . " t1 ON p.id_tipo_pokemon1 = t1.id_tipo_pokemon
-            LEFT JOIN " . $GLOBALS['tableTypes'] . " t2 ON p.id_tipo_pokemon2 = t2.id_tipo_pokemon
-            WHERE p.nombre LIKE '%$pokemonBuscado%' 
-            OR t1.descripcion LIKE '%$pokemonBuscado%' 
-            OR t2.descripcion LIKE '%$pokemonBuscado%' 
-            OR p.id_pokemon = '$pokemonBuscado'";
-
-    $resultado = $conn->query($sql);
-
-    if ($resultado->num_rows > 0) {
-        echo "<div class='pokemon-container'><div/>";
-        while ($fila = $resultado->fetch_assoc()) {
-            echo "<a href='vistaPokemon.php?id=" . $fila["id_pokemon"] . "'>";
-            echo "<div class='tablaBus'>";
-            echo "<div class='imagenPokeBus'> <img src='img/pokemones/" . $fila["imagen"] . "'></div>";
-            echo "<div class='infoPokemon'>"; // Contenedor para la información del Pokémon
-            echo "<div class='nombrePokeBus'> <p>" . $fila["nombre"] . "</p></div>";
-            echo "<div class='numeroPokeBus'><p>#" . $fila["id_pokemon"] . "</p></div>";
-            echo "<div class='tiposPokemon'>";
-
-            foreach ($tipos as $tipodescrip) {
-                if ($fila["id_tipo_pokemon1"] == $tipodescrip["id_tipo_pokemon"]) {
-                    echo "<div class='tipoPoke'>";
-                    echo "<img src='img/tipo_" . $tipodescrip["descripcion"] . ".png'>";
-                    echo "</div>";
-                }
-
-                if (!empty($fila["id_tipo_pokemon2"]) && $fila["id_tipo_pokemon2"] == $tipodescrip["id_tipo_pokemon"]) {
-                    echo "<div class='tipoPoke'>";
-                    echo "<img src='img/tipo_" . $tipodescrip["descripcion"] . ".png'>";
-                    echo "</div>";
-                }
-            }
-
-            echo "</div>";
-            echo "</div>";
-            echo "</div>";
-            echo "</a>";
-        }
-        echo "</div>";
-    } else {
-        echo "<div class='error-message'>No hay Pokémon disponibles</div>";
-    }
-
-    if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
-        echo '<form method="get" action="home.php">';
-        echo '<button class="botonVolver" type="submit">Volver</button>';
-        echo '</form>';
-    }
-    $conn->close();
-    ?>
+        ?>
+    </div>
+    <div class="pokemonesDisponibles">
+        <?php
+        include("php/tablapokemon.php")
+        ?>
+    </div>
 </main>
 
 <footer>
-    <?php include('php/footer.php') ?>
+    <?php
+    include('php/footer.php')
+    ?>
 </footer>
 
 </body>

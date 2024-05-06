@@ -44,15 +44,18 @@ $usuarioLogueado = isset($_SESSION['usuario']);
                 break;
         }
     }
-        if($_SESSION['admin'] == 1){
-            require_once('php\modificacion.php');
+        if(isset($_SESSION['admin'])){
+            if($_SESSION['admin'] == 1){
+              require_once('php\modificacion.php');
+            }else{
+                echo "<div><img src='img/msg/acceso_denegado.png' alt='Acceso Denegado' width='960' height='540' </div>";
+            }
         }else{
             echo "<div><img src='img/msg/acceso_denegado.png' alt='Acceso Denegado' width='960' height='540' </div>";
         }
 
-
     ?>
-    <form method="get" action="home.php">
+    <form method="get" action="index.php">
         <button class="botonVolver" type="submit">Volver</button>
     </form>
 </main>

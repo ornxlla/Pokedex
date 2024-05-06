@@ -22,7 +22,7 @@ if (isset($_POST["usuario"]) && isset($_POST["contrasenia"])) {
 
 
     if (empty($usuario) || empty($contrasenia)) {
-        header("location: ./index.php?error=2");
+        header("location: ../index.php?error=2");
         exit();
     }
 
@@ -32,15 +32,15 @@ if (isset($_POST["usuario"]) && isset($_POST["contrasenia"])) {
         $row = mysqli_fetch_assoc($result);
         $_SESSION["usuario"]    = $usuario;
         $_SESSION["admin"]      = $row["es_administrador"];
-        header("location: ../home.php");
+        header("location: ../index.php");
         exit();
     } else {
-
         $_SESSION["error_message"] = "Usuario o contraseña incorrecta !";
         header("location: ../index.php?error=1");
         exit();
     }
 } elseif (isset($_POST["usuario"]) || isset($_POST["contrasenia"])) {
+    $_SESSION["error_message"] = "";
     header("location: ../index.php?error=2");
     exit();
 }

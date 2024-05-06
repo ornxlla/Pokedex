@@ -12,7 +12,6 @@
 </script>
 
 <?php
-
 require_once "php/cargarGlobales.php";
 
 $conn = new mysqli($GLOBALS['hostdb'], $GLOBALS['userdb'], $GLOBALS['passdb'], $GLOBALS['schemadb']);
@@ -59,11 +58,13 @@ foreach ($pokemon as $poke) {
                 }
             }
 
-            if ($_SESSION['admin'] == 1) {
-                echo '<div class="infoPokemon">';
-                echo '<input type="button" class="modificarPokemon" name="modificafPokemon" id="modificarPokemon" value="Modificar Pokemon" onclick="modificarPokemon(\'' . $poke["id_bdd"] . '\')"> </br>';
-                echo '<input type="button" class="eliminarPokemon" name="eliminarPokemon" id="eliminarPokemon" value="Eliminar Pokemon" onclick="eliminarPokemon(\'' . $poke["id_bdd"] . '\', \'' . $poke["nombre"] . '\')">';
-                echo '</div>';
+            if (isset($_SESSION['admin'])) {
+                if($_SESSION['admin'] == 1){
+                    echo '<div class="infoPokemon">';
+                    echo '<input type="button" class="modificarPokemon" name="modificafPokemon" id="modificarPokemon" value="Modificar Pokemon" onclick="modificarPokemon(\'' . $poke["id_bdd"] . '\')"> </br>';
+                    echo '<input type="button" class="eliminarPokemon" name="eliminarPokemon" id="eliminarPokemon" value="Eliminar Pokemon" onclick="eliminarPokemon(\'' . $poke["id_bdd"] . '\', \'' . $poke["nombre"] . '\')">';
+                    echo '</div>';
+                }
             }
             echo "</div></div><br>";
         }

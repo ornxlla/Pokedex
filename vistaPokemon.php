@@ -85,7 +85,7 @@ require_once "php/cargarGlobales.php";
             echo "<script> console.log('No se pudo obtener al pokemon deseado')</script>";
         }
 
-        echo '<form method="get" action="home.php">';
+        echo '<form method="get" action="index.php">';
         echo '<button class="botonVolver" type="submit">Volver</button>';
         echo '</form>';
 

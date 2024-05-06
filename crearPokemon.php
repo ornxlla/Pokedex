@@ -45,13 +45,16 @@ $usuarioLogueado = isset($_SESSION['usuario']);
         }
     }
 
-    if($_SESSION['admin'] == 1) {
-        require_once('php\alta.php');
+    if(isset($_SESSION['admin'])){
+        if($_SESSION['admin'] == 1){
+            require_once('php\alta.php');
+        }else{
+            echo "<div><img src='img/msg/acceso_denegado.png' alt='Acceso Denegado' width='960' height='540' </div>";
+        }
     }else{
         echo "<div><img src='img/msg/acceso_denegado.png' alt='Acceso Denegado' width='960' height='540' </div>";
     }
 ?>
-
 </main>
 <footer>
     <?php include('php/footer.php') ?>

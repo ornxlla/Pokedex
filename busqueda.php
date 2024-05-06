@@ -166,7 +166,7 @@ require_once "php/cargarGlobales.php";
 
         if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
             echo '<div>';
-            echo '<form method="get" action="home.php">';
+            echo '<form method="get" action="index.php">';
             echo '<button class="botonVolver" type="submit">Volver</button>';
             echo '</form>';
             echo '</div>';
