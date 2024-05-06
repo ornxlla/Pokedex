@@ -132,7 +132,7 @@ if (isset($_POST['crearPokemon'])) {
         case 0:
             echo "<script>
                         alert('Se ha creado el Pokémon de forma correcta');
-                        window.location.href='../index.php'
+                        window.location.href='./index.php'
                       </script>";
             break;
         case 1:

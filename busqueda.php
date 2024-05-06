@@ -109,7 +109,7 @@ require_once "php/cargarGlobales.php";
             if (!isset($_GET['busqueda']) || $_GET['busqueda'] === '') {
                 echo "<div class='error-message'>Introduce un término de búsqueda</div>";
             } else {
-                echo "<div class='error-message'>Pokemon no encontrado</div>";
+                echo "<div class='error-message'><p>Pokemon no encontrado</p></div>";
 
                 //muestra todos los disponibles
 
