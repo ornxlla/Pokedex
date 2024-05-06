@@ -20,6 +20,27 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `pokemon`
 --
+--
+-- Estructura de tabla para la tabla `login`
+--
+
+CREATE TABLE `login` (
+  `id_usuario` int(11) NOT NULL,
+  `usuario` varchar(255) NOT NULL,
+  `contrasenia` varchar(255) NOT NULL,
+  `es_administrador` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `login`
+--
+
+INSERT INTO `login` (`id_usuario`, `usuario`, `contrasenia`, `es_administrador`) VALUES
+(1, 'pokeadmin', '1234', 1),
+(2, 'poke', '123', 0);
+
+-- --------------------------------------------------------
+
 
 -- --------------------------------------------------------
 
