@@ -172,7 +172,7 @@ footer {
 h1.error-message {
     margin: 1rem;
     height: 32px;
-    width: 67%;
+    width: auto;
     border-radius: 5px;
     border: 2px solid red;
     background-color: #FFEFEF;

@@ -127,6 +127,11 @@ p {
     width: 100%;
 }
 
+.error-message{
+    width: 100%;
+    margin: 0.5em;
+}
+
 @media screen and (max-width: 621px) {
     .tablaBus {
         width: 100%;
